@@ -1,0 +1,520 @@
+/* CSS-file with custom styles - don't delete this file! */
+.custom_rule { color: inherit; }
+
+/* Page title */
+.page_top_breadcrumbs {
+	background-image: url(skins/images/bg_over.png); 
+	background-repeat: repeat-x; 
+	background-position: center top; 
+}
+
+.top_panel_style_light.top_panel_opacity_solid .sc_pt_st1{
+	background-color: #1eaace;
+}
+
+/* Info section */
+.sc_bg1{
+	background-color:#f4f7f9;
+}
+
+.sc_bg2{
+	background-color:#15af85;
+}
+
+
+/* Features section */
+.sc_features_st1{
+	color:#222222;
+}
+
+/* Contact us form */
+.sc_contact_bg_img {
+	background-image:url(http://placehold.it/2300x1543);
+}
+
+.sc_contact_bg_color{
+	background-color:rgba(2,75,94,0.8);
+}
+
+/* Free course */
+.sc_course_info_st1{
+	color:#1eaace;
+}
+
+/* Pages 404 */
+.sc_non_ex_page_st1{
+	background-image: url(../images/bg_over.png); 
+	background-repeat: repeat-x; 
+	background-position: center top;	
+}
+
+/* Socials widget */
+.social_facebook {
+	background-image: url(../images/socials/facebook.png);
+}
+
+.social_pinterest {
+	background-image: url(../images/socials/pinterest.png);
+}
+
+.social_twitter {
+	background-image: url(../images/socials/twitter.png);
+}
+
+.social_gplus{
+	background-image: url(../images/socials/gplus.png);
+}
+
+.social_rss {
+	background-image: url(../images/socials/rss.png);
+}
+
+.social_dribbble{
+	background-image: url(../images/socials/dribbble.png);
+}
+
+/* Testimonials */
+.sc_ts_bg1{
+	background-color:#00439b;	
+}
+
+.sc_ts_bg2{
+	background-color:rgba(0,67,155,0.4);	
+}
+
+.bg_img1{
+	background-image: url(http://placehold.it/1920x320);
+}
+
+/* Alert shortcode */
+.sc_infobox.sc_infobox_style_regular.sc_alert_st1{
+	background-color:#007c9c;
+}
+
+/* Audio shortcode */
+.sc_audio_st1{
+	background-image: url(http://placehold.it/2300x817)
+}
+
+/* Buttons shortcode */
+.sc_buttons_st1{
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+	margin-left:4px;	
+}
+
+.sc_buttons_st2{
+	background-color:#1dbb90; 
+	border-color:#1dbb90;	
+}
+
+.sc_buttons_st3{
+	background-color:#108f6c;
+}
+
+.sc_buttons_st4{
+	margin-top:1.5em;
+	margin-bottom:1.5em;
+	margin-left:4px;
+	border-color:#ffffff;	
+}
+
+.sc_button.sc_button_style_filled.sc_buttons_st5{
+	background-color:#1dbb90; 
+	border-color:#1dbb90;	
+}
+
+.sc_button.sc_button_style_filled.sc_buttons_st6{
+	color:#e05100;
+	background-color:#ffffff;	
+}
+
+/* Lines shortcode */
+.sc_lines_st1{
+	border-top-color:#dddddd;
+}
+
+.sc_lines_st2{
+	border-top-color:#e05100;
+}
+
+.sc_lines_st3{
+	border-top-color:#1dbb90
+}
+
+/* List shortcode */
+.sc_list_st1 {
+	color:#1dbb90;
+}
+
+.sc_list_icon.icon-delete-2.sc_list_st2 {
+	color:#e05100;
+}
+
+/* List shortcode */
+.sc_skills_bgc1,
+.sc_skills_item .sc_skills_count.sc_skills_bgc1 {
+	background-color:#e05100;
+}
+
+.sc_skills_bgc2,
+.sc_skills_item .sc_skills_count.sc_skills_bgc2 {
+	background-color:#ffb20e;
+}
+
+.sc_skills_bgc3,
+.sc_skills_item .sc_skills_count.sc_skills_bgc3{
+	background-color:#1dbb90;
+}
+
+.sc_skills_bgc4,
+.sc_skills_item .sc_skills_count.sc_skills_bgc4{
+	background-color:#1eaace;
+}
+
+.sc_skills_bgc5,
+.sc_skills_item .sc_skills_count.sc_skills_bgc5{
+	background-color:#018763;
+}
+
+.sc_skills_bar .sc_skills_item .sc_skills_count.sc_skills_border_st1{
+	border-color:#e05100;
+}
+
+.sc_skills_bar .sc_skills_item .sc_skills_count.sc_skills_border_st2{
+	border-color:#ffb20e;
+}
+
+.sc_skills_bar .sc_skills_item .sc_skills_count.sc_skills_border_st3{
+	border-color:#1dbb90;
+}
+
+.sc_skills_bar .sc_skills_item .sc_skills_count.sc_skills_border_st4{
+	border-color:#1eaace;
+}
+
+/* Comments section */
+.comment-form .column-1_2{
+	width: 49.8%;
+}
+
+/* Post image */
+#gallery-1 {
+	margin: auto;
+}
+
+#gallery-1 .gallery-item {
+	float: left;
+	margin-top: 10px;
+	text-align: center;
+	width: 33%;
+}
+
+#gallery-1 img {
+	border: 2px solid #cfcfcf;
+}
+
+#gallery-1 .gallery-caption {
+	margin-left: 0;
+}
+
+
+/* Video shortcode */
+.sc_video_st1{
+	padding-top:3%;
+	padding-right:3%;
+	padding-bottom:24%;
+	padding-left:13%; 
+	background-image: url(../images/post_video_border.png);
+}
+
+.sc_video_st1 .hover_icon::before {
+	margin-left: 10px;
+	margin-top: 7px;
+}
+
+
+/* Custom background */
+.sc_footer_custom_bg1{
+	background-color:#ffffff;
+}
+
+.post_audio_bg{
+	background-image: url(http://placehold.it/1150x230);
+}
+
+.post_audio_bg2{
+	background-image: url(http://placehold.it/400x225);
+}
+
+.post_ts_bg3{
+	background-color:#1eaace;
+}
+
+.margin_top_2_5em_imp.margin_bottom_2_5em_imp h3{
+	margin-top: 0 !important;
+}
+
+/* Display */
+.disp_block{
+	display: block;
+}
+
+.disp_none{
+	display: none;
+}
+
+/* Position */
+.pos_rel {
+	position: relative;
+}
+
+/* Text-align */
+.text_left{
+	text-align: left;
+}
+
+.text_center{
+	text-align: center;
+}
+
+.text_right {
+	text-align: right;
+}
+
+/* Font-size */
+.font_1_25em {
+	font-size: 1.25em;
+}
+
+.font_2_5em {
+	font-size:2.5em;
+}
+
+.font_2_57em {
+	font-size:2.5714em;
+}
+
+.font_3_5em {
+	font-size: 3.5em;
+}
+
+.font_5em {
+	font-size: 5em;
+}
+
+/* Font-weight */
+.font-w_400{
+	font-weight: 400;
+}
+
+/* Line-height */
+.lh_1em { line-height: 1em; }
+.lh_1_3em { line-height: 1.3em; }
+
+/* Overflow */
+.sc_overflow_h_imp {
+	overflow: hidden !important;
+}
+
+
+/* Z-index */
+.cust-z-index-5 {z-index:5;}
+.cust-z-index-6 {z-index:6;}
+.cust-z-index-7 {z-index:7;}
+.cust-z-index-8 {z-index:8;}
+
+
+/* Margin */
+.margin_top_0 {margin-top: 0;}
+.margin_top_05em {margin-top: 0.5em;}
+.margin_top_05em_imp {margin-top: 0.5em !important;}
+.margin_top_075em_imp {margin-top: 0.75em !important;}
+.margin_top_1em {margin-top: 1em;}
+.margin_top_1em_imp {margin-top: 1em !important;}
+.margin_top_1_5em_imp {margin-top: 1.5em !important;}
+.margin_top_2em {margin-top: 2em;}
+.margin_top_2_5em_imp {margin-top: 2.5em !important;}
+.margin_top_3em {margin-top: 3em;}
+.margin_top_3em_imp {margin-top: 3em !important;}
+.margin_top_4em {margin-top: 4em;}
+
+.margin_bottom_0 {margin-bottom: 0;}
+.margin_bottom_0_imp {margin-bottom: 0 !important;}
+.margin_bottom_1_imp {margin-bottom: 1px !important;}
+.margin_bottom_4 {margin-bottom: 4px;}
+.margin_bottom_10 {margin-bottom: 10px;}
+
+.margin_bottom_015em {margin-bottom: 0.15em;}
+.margin_bottom_05em {margin-bottom: 0.5em;}
+.margin_bottom_075em {margin-bottom: 0.75em;}
+.margin_bottom_075em_imp {margin-bottom: 0.75em !important;}
+.margin_bottom_08em {margin-bottom: 0.8em;}
+.margin_bottom_085em {margin-bottom: 0.85em;}
+.margin_bottom_1em {margin-bottom: 1em;}
+.margin_bottom_1em_imp {margin-bottom: 1em !important;}
+.margin_bottom_1_5em {margin-bottom: 1.5em;}
+.margin_bottom_2em {margin-bottom: 2em;}
+.margin_bottom_2_5em_imp {margin-bottom: 2.5em !important;}
+.margin_bottom_3em {margin-bottom: 3em !important;}
+.margin_bottom_3em_imp {margin-bottom: 3em !important;}
+.margin_bottom_3_5em_imp {margin-bottom: 3.5em !important;}
+
+.margin_left_4 {margin-left: 4px;}
+.margin_left_4em_imp {margin-left: 4em !important;}
+
+.margin_right_0_imp {margin-right: 0 !important;}
+.margin_right_033em {margin-right:0.33em;}
+.margin_right_05em {margin-right:0.5em;}
+.margin_right_2em_imp {margin-right:2em !important;}
+
+
+/* Width */
+.width_240 {width: 240px;}
+.width_280 {width: 280px;}
+.width_320 {width: 320px;}
+.width_519 {width: 519px;}
+.width_533 {width: 533px;}
+.width_596 {width: 596px;}
+.width_720 {width: 720px;}
+.width_750 {width: 750px;}
+
+.width_10per{width: 10%;}
+.width_47per{width: 47%;}
+.width_50per{width: 50%;}
+.width_54per{width: 54%;}
+.width_58per{width: 58%;}
+.width_60per{width: 60%;}
+.width_61per{width: 61%;}
+.width_62per{width: 62%;}
+.width_63per{width: 63%;}
+.width_67per{width: 67%;}
+.width_70per{width: 70%;}
+.width_73per{width: 73%;}
+.width_75per{width: 75%;}
+.width_76per{width: 76%;}
+.width_77per{width: 77%;}
+.width_78per{width: 78%;}
+.width_80per{width: 80%;}
+.width_81per{width: 81%;}
+.width_84per{width: 84%;}
+.width_87per{width: 87%;}
+.width_100per{width: 100%;}
+
+.widht_12em {width: 12em;}
+
+
+/* Height */
+.height_75 {height: 75px;}
+.height_158 {height: 158px;}
+.height_180 {height: 180px;}
+.height_200 {height: 200px;}
+.height_225 {height: 225px;}
+.height_230 {height: 230px;}
+.height_240 {height: 240px;}
+.height_292 {height: 292px;}
+.height_300 {height: 292px;}
+.height_335 {height: 335px;}
+.height_400 {height: 400px;}
+.height_422 {height: 422px;}
+.height_450 {height: 450px;}
+.height_630 {height: 630px;}
+
+.height_12em {height: 12em;}
+.height_25em {height: 25em;}
+.height_30em {height: 30em;}
+
+.max-height_450 {max-height: 450px;}
+.max-height_630 {max-height: 630px;}
+
+/* Border */
+.border_0{
+	border: 0;
+}
+
+/* Customizer */
+.customizer_cs_st1{
+	background-image: url(../images/schemes/original.jpg)	
+}
+
+.customizer_cs_st2{
+	background-image: url(../images/schemes/contrast.jpg)
+}
+
+.customizer_cs_st3{
+	background-image: url(../images/schemes/modern.jpg)	
+}
+
+.customizer_cs_st4{
+	background-image: url(../images/schemes/pastel.jpg)
+}
+
+
+.customizer_bgp_st1{
+	background-image: url(../images/bg/pattern_1.jpg);
+}
+
+.customizer_bgp_st2{
+	background-image: url(../images/bg/pattern_2.jpg);
+}
+
+.customizer_bgp_st3{
+	background-image: url(../images/bg/pattern_3.jpg);
+}
+
+.customizer_bgp_st4{
+	background-image: url(../images/bg/pattern_4.jpg);
+}
+
+.customizer_bgp_st5{
+	background-image: url(../images/bg/pattern_5.jpg);
+}
+
+
+
+.customizer_bgp_thumb_st1{
+	background-image: url(../images/bg/pattern_1_thumb.jpg);
+}
+
+.customizer_bgp_thumb_st2{
+	background-image: url(../images/bg/pattern_2_thumb.jpg);
+}
+
+.customizer_bgp_thumb_st3{
+	background-image: url(../images/bg/pattern_3_thumb.jpg);
+}
+
+.customizer_bgp_thumb_st4{
+	background-image: url(../images/bg/pattern_4_thumb.jpg);
+}
+
+.customizer_bgp_thumb_st5{
+	background-image: url(../images/bg/pattern_5_thumb.jpg);
+}
+
+
+.customizer_bgi_st1{
+	background-image: url(../images/bg/image_1.jpg);
+}
+
+.customizer_bgi_st2{
+	background-image: url(../images/bg/image_2.jpg);
+}
+
+.customizer_bgi_st3{
+	background-image: url(../images/bg/image_3.jpg);
+}
+
+
+.customizer_bgi_thumb_st1{
+	background-image: url(../images/bg/image_1_thumb.jpg);
+}
+
+.customizer_bgi_thumb_st2{
+	background-image: url(../images/bg/image_2_thumb.jpg);
+}
+
+.customizer_bgi_thumb_st3{
+	background-image: url(../images/bg/image_3_thumb.jpg);
+}
+

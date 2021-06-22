@@ -1,0 +1,142 @@
+	
+	.tp-caption a {
+		color: #e05100;
+		text-shadow: none;
+		text-decoration: none;
+		-webkit-transition: all 0.2s ease-out;
+		-moz-transition: all 0.2s ease-out;
+		-o-transition: all 0.2s ease-out;
+		-ms-transition: all 0.2s ease-out
+	}
+	
+	.tp-caption a:hover {
+		color: #ffa902
+	}
+	
+	.tp-caption.roundedimage,
+	.roundedimage {
+		-webkit-box-shadow: -5px 4px 0px 0px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: -5px 4px 0px 0px rgba(0, 0, 0, 0.2);
+		box-shadow: -5px 4px 0px 0px rgba(0, 0, 0, 0.2);
+		border-radius: 17px 17px 17px 17px;
+		border-width: 8px;
+		border-color: rgb(255, 255, 255);
+		border-style: solid
+	}
+	
+	.tp-caption.title,
+	.title {
+		font-size: 50px;
+		line-height: 58px;
+		font-family: "Love Ya Like A Sister", cursive;
+		color: #ffffff;
+		text-decoration: none;
+		background-color: transparent;
+		border-width: 0px;
+		border-color: rgb(34, 34, 34);
+		border-style: none
+	}
+	
+	.tp-caption.slide_text,
+	.slide_text {
+		font-size: 18px;
+		line-height: 27px;
+		color: rgb(255, 255, 255);
+		text-decoration: none;
+		background-color: transparent;
+		border-width: 0px;
+		border-color: rgb(255, 255, 255);
+		border-style: none
+	}
+	
+	.tp-caption.slide_button,
+	.slide_button {
+		display: block;
+		font-size: 18px;
+		line-height: 18px;
+		font-weight: 700;
+		color: #e05100;
+		text-decoration: none;
+		background-color: rgba(255, 255, 255, 1);
+		padding: 20px 20px 20px 20px;
+		-webkit-box-shadow: -4px 3px 0px 0px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: -4px 3px 0px 0px rgba(0, 0, 0, 0.2);
+		box-shadow: -4px 3px 0px 0px rgba(0, 0, 0, 0.2);
+		border-radius: 4px 4px 4px 4px;
+		border-width: 0px;
+		border-color: rgb(34, 34, 34);
+		border-style: none
+	}
+	
+	.tp-caption.titlecentered,
+	.titlecentered {
+		font-size: 50px;
+		line-height: 58px;
+		font-family: "Love Ya Like A Sister", cursive;
+		color: #ffffff;
+		text-decoration: none;
+		background-color: transparent;
+		text-align: center;
+		border-width: 0px;
+		border-color: rgb(34, 34, 34);
+		border-style: none
+	}
+	
+	.tp-caption.slidetextcentered,
+	.slidetextcentered {
+		font-size: 18px;
+		line-height: 27px;
+		color: #ffffff;
+		text-decoration: none;
+		background-color: transparent;
+		text-align: center;
+		border-width: 0px;
+		border-color: rgb(255, 255, 255);
+		border-style: none;
+	}
+	
+	
+	#rev_slider_1_1_wrapper{
+		background-color: #018763;
+	}
+	
+	.rs-cust-style1{
+		max-width: 633px; 
+		max-height: 180px; 
+		white-space: normal;
+	}
+	
+	.rs-cust-style2{
+		max-width: 559px; 
+		max-height: 49px; 
+		white-space: normal;
+	}
+	
+	.rs-cust-style3 {
+		max-width: 190px; 
+		max-height: 18px; 
+		white-space: normal;
+	}
+	
+	#rev_slider_2_1_wrapper{
+		background-color:#018763;
+	}
+	
+	.rs-cust-style4 {
+		background-color:#018763;
+	}
+	
+	.rs-cust-style5{
+		background-color:#007c9c;
+	}
+	
+	.rs-cust-style6{
+		background-color:#cc8b00;
+	}
+	
+	.rs-cust-style7{
+		max-width: 820px; 
+		max-height: 116px; 
+		white-space: normal;
+	}
+	
