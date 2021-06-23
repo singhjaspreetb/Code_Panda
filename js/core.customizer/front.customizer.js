@@ -103,14 +103,14 @@ jQuery(document).ready(function() {
 		});
 
 		// First open custom panel
-		if (THEMEREX_GLOBALS['demo_time'] > 0) {
-			if (themerex_get_cookie('themerex_custom_options_demo') != 1 ){
-				setTimeout(function() { jQuery("#co_toggle").trigger('click'); }, THEMEREX_GLOBALS['demo_time']);
-				themerex_set_cookie('themerex_custom_options_demo', '1', 1);
+		if ( _GLOBALS['demo_time'] > 0) {
+			if ( _get_cookie(' _custom_options_demo') != 1 ){
+				setTimeout(function() { jQuery("#co_toggle").trigger('click'); },  _GLOBALS['demo_time']);
+				 _set_cookie(' _custom_options_demo', '1', 1);
 			}
 		}
 
-		themerex_custom_options_reset(!THEMEREX_GLOBALS['remember_visitors_settings']);
+		 _custom_options_reset(! _GLOBALS['remember_visitors_settings']);
 
 		jQuery('#custom_options #co_theme_reset').click(function (e) {
 			"use strict";
@@ -118,13 +118,13 @@ jQuery(document).ready(function() {
 				"use strict";
 				jQuery(this).find('div[data-options]').each(function() {
 					var opt = jQuery(this).data('options');
-					if (THEMEREX_GLOBALS['remember_visitors_settings']) 
-						themerex_del_cookie(opt);
+					if ( _GLOBALS['remember_visitors_settings']) 
+						 _del_cookie(opt);
 					else
-						themerex_custom_options_remove_option_from_url(opt);
+						 _custom_options_remove_option_from_url(opt);
 				});
 			});
-			themerex_custom_options_show_loader();
+			 _custom_options_show_loader();
 			//window.location.reload();
 			window.location.href = jQuery('#co_site_url').val();
 			e.preventDefault();
@@ -136,7 +136,7 @@ jQuery(document).ready(function() {
 		if (swither.length > 0) {
 			swither.each(function() {
 				jQuery(this).addClass('inited');
-				themerex_custom_options_switcher(jQuery(this));
+				 _custom_options_switcher(jQuery(this));
 			});
 			jQuery("#custom_options .co_switch_box a" ).click(function(e) {
 				"use strict";
@@ -144,17 +144,17 @@ jQuery(document).ready(function() {
 				var wrap = jQuery(this).parent('.co_switch_box');
 				var options = wrap.data('options');
 				wrap.find('.switcher').data('value', value);
-				if (THEMEREX_GLOBALS['remember_visitors_settings']) themerex_set_cookie(options, value, 1);
-				themerex_custom_options_reset(true);
-				themerex_custom_options_switcher(wrap);
-				themerex_custom_options_apply_settings(options, value);
+				if ( _GLOBALS['remember_visitors_settings'])  _set_cookie(options, value, 1);
+				 _custom_options_reset(true);
+				 _custom_options_switcher(wrap);
+				 _custom_options_apply_settings(options, value);
 				e.preventDefault();
 				return false;
 			});
 		}
 
 		// ColorPicker
-		themerex_color_picker();
+		 _color_picker();
 		jQuery('#custom_options .iColorPicker').each(function() {
 			"use strict";
 			jQuery(this).css('backgroundColor', jQuery(this).data('value'));
@@ -162,20 +162,20 @@ jQuery(document).ready(function() {
 
 		jQuery('#custom_options .iColorPicker').click(function (e) {
 			"use strict";
-			themerex_color_picker_show(null, jQuery(this), function(fld, clr) {
+			 _color_picker_show(null, jQuery(this), function(fld, clr) {
 				"use strict";
 				var val = fld.data('value');
 				var options = fld.data('options');
 				fld.css('backgroundColor', clr);
-				if (THEMEREX_GLOBALS['remember_visitors_settings']) themerex_set_cookie(options, clr, 1);
+				if ( _GLOBALS['remember_visitors_settings'])  _set_cookie(options, clr, 1);
 				if (options == 'bg_color') {
-					if (THEMEREX_GLOBALS['remember_visitors_settings'])  {
-						themerex_del_cookie('bg_image');
-						themerex_del_cookie('bg_pattern');
+					if ( _GLOBALS['remember_visitors_settings'])  {
+						 _del_cookie('bg_image');
+						 _del_cookie('bg_pattern');
 					}
 				}
-				themerex_custom_options_reset(true);
-				themerex_custom_options_apply_settings(options, clr);
+				 _custom_options_reset(true);
+				 _custom_options_apply_settings(options, clr);
 			});
 		});
 		
@@ -185,11 +185,11 @@ jQuery(document).ready(function() {
 			jQuery('#custom_options #co_scheme_list .co_scheme_wrapper').removeClass('active');
 			var obj = jQuery(this).addClass('active');
 			var val = obj.data('value');
-			if (THEMEREX_GLOBALS['remember_visitors_settings'])  {
-				themerex_set_cookie('color_scheme', val, 1);
+			if ( _GLOBALS['remember_visitors_settings'])  {
+				 _set_cookie('color_scheme', val, 1);
 			}
-			themerex_custom_options_reset(true);
-			themerex_custom_options_apply_settings('color_scheme', val);
+			 _custom_options_reset(true);
+			 _custom_options_apply_settings('color_scheme', val);
 			e.preventDefault();
 			return false;
 		});
@@ -200,15 +200,15 @@ jQuery(document).ready(function() {
 			jQuery('#custom_options #co_bg_pattern_list .co_pattern_wrapper,#custom_options #co_bg_images_list .co_image_wrapper').removeClass('active');
 			var obj = jQuery(this).addClass('active');
 			var val = obj.attr('id').substr(-1);
-			if (THEMEREX_GLOBALS['remember_visitors_settings'])  {
-				themerex_del_cookie('bg_color');
-				themerex_del_cookie('bg_image');
-				themerex_set_cookie('bg_pattern', val, 1);
+			if ( _GLOBALS['remember_visitors_settings'])  {
+				 _del_cookie('bg_color');
+				 _del_cookie('bg_image');
+				 _set_cookie('bg_pattern', val, 1);
 			}
-			themerex_custom_options_reset(true);
-			themerex_custom_options_apply_settings('bg_pattern', val);
+			 _custom_options_reset(true);
+			 _custom_options_apply_settings('bg_pattern', val);
 			if (jQuery("#custom_options .co_switch_box .switcher").data('value') != 'boxed') {
-				THEMEREX_GLOBALS['co_add_params'] = {'bg_pattern': val};
+				 _GLOBALS['co_add_params'] = {'bg_pattern': val};
 				jQuery("#custom_options .co_switch_box a[data-value='boxed']").trigger('click');
 			}
 			e.preventDefault();
@@ -221,15 +221,15 @@ jQuery(document).ready(function() {
 			jQuery('#custom_options #co_bg_images_list .co_image_wrapper, #custom_options #co_bg_pattern_list .co_pattern_wrapper').removeClass('active');
 			var obj = jQuery(this).addClass('active');
 			var val = obj.attr('id').substr(-1);
-			if (THEMEREX_GLOBALS['remember_visitors_settings'])  {
-				themerex_del_cookie('bg_color');
-				themerex_del_cookie('bg_pattern');
-				themerex_set_cookie('bg_image', val, 1);
+			if ( _GLOBALS['remember_visitors_settings'])  {
+				 _del_cookie('bg_color');
+				 _del_cookie('bg_pattern');
+				 _set_cookie('bg_image', val, 1);
 			}
-			themerex_custom_options_reset(true);
-			themerex_custom_options_apply_settings('bg_image', val);
+			 _custom_options_reset(true);
+			 _custom_options_apply_settings('bg_image', val);
 			if (jQuery("#custom_options .co_switch_box .switcher").data('value') != 'boxed') {
-				THEMEREX_GLOBALS['co_add_params'] = {'bg_image': val};
+				 _GLOBALS['co_add_params'] = {'bg_image': val};
 				jQuery("#custom_options .co_switch_box a[data-value='boxed']").trigger('click');
 			}
 			e.preventDefault();
@@ -255,7 +255,7 @@ jQuery(window).resize(function () {
 
 
 // SwitchBox
-function themerex_custom_options_switcher(wrap) {
+function  _custom_options_switcher(wrap) {
 	"use strict";
 	var drag = wrap.find('.switcher').eq(0);
 	var value = drag.data('value');
@@ -269,7 +269,7 @@ function themerex_custom_options_switcher(wrap) {
 }
 
 // Show Reset button
-function themerex_custom_options_reset() {
+function  _custom_options_reset() {
 	"use strict";
 
 	var cooks = arguments[0] ? true : false;
@@ -279,7 +279,7 @@ function themerex_custom_options_reset() {
 			if (cooks) return;
 	
 			jQuery(this).find('div[data-options]').each(function() {
-				var cook = themerex_get_cookie(jQuery(this).data('options'))
+				var cook =  _get_cookie(jQuery(this).data('options'))
 				if (cook != null && cook != undefined)
 					cooks = true;			
 			});
@@ -292,7 +292,7 @@ function themerex_custom_options_reset() {
 }
 
 // Remove specified option from URL
-function themerex_custom_options_remove_option_from_url(option) {
+function  _custom_options_remove_option_from_url(option) {
 	var pos = -1, pos2 = -1, pos3 = -1;
 	var loc = jQuery('#co_site_url').val();
 	if (loc && (pos = loc.indexOf('?')) > 0) {
@@ -307,16 +307,16 @@ function themerex_custom_options_remove_option_from_url(option) {
 }
 
 // Show Loader
-function themerex_custom_options_show_loader() {
+function  _custom_options_show_loader() {
 	jQuery('.custom_options_shadow').addClass('loading');
 }
 
 // Apply settings
-function themerex_custom_options_apply_settings(option, val) {
-	//if (window.themerex_skin_customizer)
-		themerex_skin_customizer(option, val);
+function  _custom_options_apply_settings(option, val) {
+	//if (window. _skin_customizer)
+		 _skin_customizer(option, val);
 	//else {
-		//themerex_custom_options_show_loader();
+		// _custom_options_show_loader();
 		//location.reload();
 	//}
 }

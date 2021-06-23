@@ -1,5 +1,5 @@
 // Interactive change skin custom styles
-function themerex_skin_customizer(option, val) {
+function  _skin_customizer(option, val) {
 
 	var custom_style = '';
 
@@ -52,7 +52,7 @@ function themerex_skin_customizer(option, val) {
 	else if (option == 'link_color') {
 
 		var clr = val;
-		var rgb = themerex_hex2rgb(clr);
+		var rgb =  _hex2rgb(clr);
 		// Link color styles
 		custom_style += '\
 			a,\
@@ -228,10 +228,10 @@ function themerex_skin_customizer(option, val) {
 			}\
 		';
 		// Link dark color
-		hsb = themerex_hex2hsb(clr);
+		hsb =  _hex2hsb(clr);
 		hsb.s = Math.min(100, hsb.s + 15);
 		hsb.b = Math.max(0, hsb.b - 20);
-		clr = themerex_hsb2hex(hsb);
+		clr =  _hsb2hex(hsb);
 		custom_style += '\
 			a:hover,\
 			.bg_tint_light a:hover,\
@@ -283,7 +283,7 @@ function themerex_skin_customizer(option, val) {
 	} else if (option == 'menu_color') {
 
 		var clr = val;
-		var rgb = themerex_hex2rgb(clr);
+		var rgb =  _hex2rgb(clr);
 		// Menu color styles
 		custom_style += '\
 			.menu_color,\
@@ -513,10 +513,10 @@ function themerex_skin_customizer(option, val) {
 			}\
 		';
 		// Menu dark color
-		hsb = themerex_hex2hsb(clr);
+		hsb =  _hex2hsb(clr);
 		hsb.s = Math.min(100, hsb.s + 15);
 		hsb.b = Math.max(0, hsb.b - 20);
-		clr = themerex_hsb2hex(hsb);
+		clr =  _hsb2hex(hsb);
 		custom_style += '\
 			.menu_dark,\
 			a.menu_color:hover,\
@@ -572,7 +572,7 @@ function themerex_skin_customizer(option, val) {
 	} else if (option == 'user_color') {
 
 		var clr = val;
-		var rgb = themerex_hex2rgb(clr);
+		var rgb =  _hex2rgb(clr);
 		// User menu color styles
 		custom_style += '\
 			.user_color,\
@@ -683,10 +683,10 @@ function themerex_skin_customizer(option, val) {
 			}\
 		';
 		// User menu dark color
-		hsb = themerex_hex2hsb(clr);
+		hsb =  _hex2hsb(clr);
 		hsb.s = Math.min(100, hsb.s + 15);
 		hsb.b = Math.max(0, hsb.b - 20);
-		clr = themerex_hsb2hex(hsb);
+		clr =  _hsb2hex(hsb);
 		custom_style += '\
 			.user_dark,\
 			a.user_color:hover,\
@@ -729,10 +729,10 @@ function themerex_skin_customizer(option, val) {
 		//Uncomment next row to apply changes without reloading page
 		//jQuery('body').removeClass('body_style_boxed body_style_wide body_style_fullwide body_style_fullscreen').addClass('body_style_'+val);
 	} else {
-		themerex_custom_options_show_loader();
+		 _custom_options_show_loader();
 		//location.reload();
 		var loc = jQuery('#co_site_url').val();
-		var params = THEMEREX_GLOBALS['co_add_params']!=undefined ? THEMEREX_GLOBALS['co_add_params'] : {};
+		var params =  _GLOBALS['co_add_params']!=undefined ?  _GLOBALS['co_add_params'] : {};
 		params[option] = val;
 		var pos = -1, pos2 = -1, pos3 = -1;
 		for (var option in params) {
@@ -755,9 +755,9 @@ function themerex_skin_customizer(option, val) {
 	}
 
 	if (custom_style != '') {
-		var styles = jQuery('#themerex-customizer-styles-'+option).length > 0 ? jQuery('#themerex-customizer-styles-'+option) : '';
+		var styles = jQuery('# -customizer-styles-'+option).length > 0 ? jQuery('# -customizer-styles-'+option) : '';
 		if (styles.length == 0)
-			jQuery('head').append('<style id="themerex-customizer-styles-'+option+'" type="text/css">'+custom_style+'</style>');
+			jQuery('head').append('<style id=" -customizer-styles-'+option+'" type="text/css">'+custom_style+'</style>');
 		else
 			styles.html(custom_style);
 	}

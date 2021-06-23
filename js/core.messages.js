@@ -3,15 +3,15 @@
 jQuery(document).ready(function(){
 	"use strict";
 
-	THEMEREX_GLOBALS['message_callback'] = null;
-	THEMEREX_GLOBALS['message_timeout'] = 5000;
+	 _GLOBALS['message_callback'] = null;
+	 _GLOBALS['message_timeout'] = 5000;
 
-	jQuery('body').on('click', '#themerex_modal_bg,.themerex_message .themerex_message_close', function (e) {
+	jQuery('body').on('click', '# _modal_bg,. _message . _message_close', function (e) {
 		"use strict";
-		themerex_message_destroy();
-		if (THEMEREX_GLOBALS['message_callback']) {
-			THEMEREX_GLOBALS['message_callback'](0);
-			THEMEREX_GLOBALS['message_callback'] = null;
+		 _message_destroy();
+		if ( _GLOBALS['message_callback']) {
+			 _GLOBALS['message_callback'](0);
+			 _GLOBALS['message_callback'] = null;
 		}
 		e.preventDefault();
 		return false;
@@ -20,12 +20,12 @@ jQuery(document).ready(function(){
 
 
 // Warning
-function themerex_message_warning(msg) {
+function  _message_warning(msg) {
 	"use strict";
 	var hdr  = arguments[1] ? arguments[1] : '';
 	var icon = arguments[2] ? arguments[2] : 'cancel-1';
-	var delay = arguments[3] ? arguments[3] : THEMEREX_GLOBALS['message_timeout'];
-	return themerex_message({
+	var delay = arguments[3] ? arguments[3] :  _GLOBALS['message_timeout'];
+	return  _message({
 		msg: msg,
 		hdr: hdr,
 		icon: icon,
@@ -37,12 +37,12 @@ function themerex_message_warning(msg) {
 }
 
 // Success
-function themerex_message_success(msg) {
+function  _message_success(msg) {
 	"use strict";
 	var hdr  = arguments[1] ? arguments[1] : '';
 	var icon = arguments[2] ? arguments[2] : 'check-1';
-	var delay = arguments[3] ? arguments[3] : THEMEREX_GLOBALS['message_timeout'];
-	return themerex_message({
+	var delay = arguments[3] ? arguments[3] :  _GLOBALS['message_timeout'];
+	return  _message({
 		msg: msg,
 		hdr: hdr,
 		icon: icon,
@@ -54,12 +54,12 @@ function themerex_message_success(msg) {
 }
 
 // Info
-function themerex_message_info(msg) {
+function  _message_info(msg) {
 	"use strict";
 	var hdr  = arguments[1] ? arguments[1] : '';
 	var icon = arguments[2] ? arguments[2] : 'info-1';
-	var delay = arguments[3] ? arguments[3] : THEMEREX_GLOBALS['message_timeout'];
-	return themerex_message({
+	var delay = arguments[3] ? arguments[3] :  _GLOBALS['message_timeout'];
+	return  _message({
 		msg: msg,
 		hdr: hdr,
 		icon: icon,
@@ -71,12 +71,12 @@ function themerex_message_info(msg) {
 }
 
 // Regular
-function themerex_message_regular(msg) {
+function  _message_regular(msg) {
 	"use strict";
 	var hdr  = arguments[1] ? arguments[1] : '';
 	var icon = arguments[2] ? arguments[2] : 'quote-1';
-	var delay = arguments[3] ? arguments[3] : THEMEREX_GLOBALS['message_timeout'];
-	return themerex_message({
+	var delay = arguments[3] ? arguments[3] :  _GLOBALS['message_timeout'];
+	return  _message({
 		msg: msg,
 		hdr: hdr,
 		icon: icon,
@@ -88,11 +88,11 @@ function themerex_message_regular(msg) {
 }
 
 // Confirm dialog
-function themerex_message_confirm(msg) {
+function  _message_confirm(msg) {
 	"use strict";
 	var hdr  = arguments[1] ? arguments[1] : '';
 	var callback = arguments[2] ? arguments[2] : null;
-	return themerex_message({
+	return  _message({
 		msg: msg,
 		hdr: hdr,
 		icon: 'help',
@@ -104,12 +104,12 @@ function themerex_message_confirm(msg) {
 }
 
 // Modal dialog
-function themerex_message_dialog(content) {
+function  _message_dialog(content) {
 	"use strict";
 	var hdr  = arguments[1] ? arguments[1] : '';
 	var init = arguments[2] ? arguments[2] : null;
 	var callback = arguments[3] ? arguments[3] : null;
-	return themerex_message({
+	return  _message({
 		msg: content,
 		hdr: hdr,
 		icon: '',
@@ -122,69 +122,69 @@ function themerex_message_dialog(content) {
 }
 
 // General message window
-function themerex_message(opt) {
+function  _message(opt) {
 	"use strict";
 	var msg = opt.msg != undefined ? opt.msg : '';
 	var hdr  = opt.hdr != undefined ? opt.hdr : '';
 	var icon = opt.icon != undefined ? opt.icon : '';
 	var type = opt.type != undefined ? opt.type : 'regular';
-	var delay = opt.delay != undefined ? opt.delay : THEMEREX_GLOBALS['message_timeout'];
+	var delay = opt.delay != undefined ? opt.delay :  _GLOBALS['message_timeout'];
 	var buttons = opt.buttons != undefined ? opt.buttons : [];
 	var init = opt.init != undefined ? opt.init : null;
 	var callback = opt.callback != undefined ? opt.callback : null;
 	// Modal bg
-	jQuery('#themerex_modal_bg').remove();
-	jQuery('body').append('<div id="themerex_modal_bg"></div>');
-	jQuery('#themerex_modal_bg').fadeIn();
+	jQuery('# _modal_bg').remove();
+	jQuery('body').append('<div id=" _modal_bg"></div>');
+	jQuery('# _modal_bg').fadeIn();
 	// Popup window
-	jQuery('.themerex_message').remove();
-	var html = '<div class="themerex_message themerex_message_' + type + (buttons.length > 0 ? ' themerex_message_dialog' : '') + '">'
-		+ '<span class="themerex_message_close iconadmin-cancel icon-cancel-1"></span>'
-		+ (icon ? '<span class="themerex_message_icon iconadmin-'+icon+' icon-'+icon+'"></span>' : '')
-		+ (hdr ? '<h2 class="themerex_message_header">'+hdr+'</h2>' : '');
-	html += '<div class="themerex_message_body">' + msg + '</div>';
+	jQuery('. _message').remove();
+	var html = '<div class=" _message  _message_' + type + (buttons.length > 0 ? '  _message_dialog' : '') + '">'
+		+ '<span class=" _message_close iconadmin-cancel icon-cancel-1"></span>'
+		+ (icon ? '<span class=" _message_icon iconadmin-'+icon+' icon-'+icon+'"></span>' : '')
+		+ (hdr ? '<h2 class=" _message_header">'+hdr+'</h2>' : '');
+	html += '<div class=" _message_body">' + msg + '</div>';
 	if (buttons.length > 0) {
-		html += '<div class="themerex_message_buttons">';
+		html += '<div class=" _message_buttons">';
 		for (var i=0; i<buttons.length; i++) {
-			html += '<span class="themerex_message_button">'+buttons[i]+'</span>';
+			html += '<span class=" _message_button">'+buttons[i]+'</span>';
 		}
 		html += '</div>';
 	}
 	html += '</div>';
 	// Add popup to body
 	jQuery('body').append(html);
-	var popup = jQuery('body .themerex_message').eq(0);
+	var popup = jQuery('body . _message').eq(0);
 	// Prepare callback on buttons click
 	if (callback != null) {
-		THEMEREX_GLOBALS['message_callback'] = callback;
-		jQuery('.themerex_message_button').click(function(e) {
+		 _GLOBALS['message_callback'] = callback;
+		jQuery('. _message_button').click(function(e) {
 			"use strict";
 			var btn = jQuery(this).index();
 			callback(btn+1, popup);
-			THEMEREX_GLOBALS['message_callback'] = null;
-			themerex_message_destroy();
+			 _GLOBALS['message_callback'] = null;
+			 _message_destroy();
 		});
 	}
 	// Call init function
 	if (init != null) init(popup);
 	// Show (animate) popup
 	var top = jQuery(window).scrollTop();
-	jQuery('body .themerex_message').animate({top: top+Math.round((jQuery(window).height()-jQuery('.themerex_message').height())/2), opacity: 1}, {complete: function () {
+	jQuery('body . _message').animate({top: top+Math.round((jQuery(window).height()-jQuery('. _message').height())/2), opacity: 1}, {complete: function () {
 		// Call init function
 		//if (init != null) init(popup);
 	}});
 	// Delayed destroy (if need)
 	if (delay > 0) {
-		setTimeout(function() { themerex_message_destroy(); }, delay);
+		setTimeout(function() {  _message_destroy(); }, delay);
 	}
 	return popup;
 }
 
 // Destroy message window
-function themerex_message_destroy() {
+function  _message_destroy() {
 	"use strict";
 	var top = jQuery(window).scrollTop();
-	jQuery('#themerex_modal_bg').fadeOut();
-	jQuery('.themerex_message').animate({top: top-jQuery('.themerex_message').height(), opacity: 0});
-	setTimeout(function() { jQuery('#themerex_modal_bg').remove(); jQuery('.themerex_message').remove(); }, 500);
+	jQuery('# _modal_bg').fadeOut();
+	jQuery('. _message').animate({top: top-jQuery('. _message').height(), opacity: 0});
+	setTimeout(function() { jQuery('# _modal_bg').remove(); jQuery('. _message').remove(); }, 500);
 }

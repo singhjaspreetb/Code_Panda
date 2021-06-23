@@ -1,10 +1,10 @@
-function themerex_googlemap_init(dom_obj, coords) {
+function  _googlemap_init(dom_obj, coords) {
 	"use strict";
-	if (typeof THEMEREX_GLOBALS['googlemap_init_obj'] == 'undefined') themerex_googlemap_init_styles();
+	if (typeof  _GLOBALS['googlemap_init_obj'] == 'undefined')  _googlemap_init_styles();
 
 	try {
 		var id = dom_obj.id;
-		THEMEREX_GLOBALS['googlemap_init_obj'][id] = {
+		 _GLOBALS['googlemap_init_obj'][id] = {
 			dom: dom_obj,
 			point: coords.point,
 			description: coords.description,
@@ -20,7 +20,7 @@ function themerex_googlemap_init(dom_obj, coords) {
 				mapTypeControl: false,
 				streetViewControl: false,
 				overviewMapControl: false,
-				styles: THEMEREX_GLOBALS['googlemap_styles'][coords.style ? coords.style : 'default'],
+				styles:  _GLOBALS['googlemap_styles'][coords.style ? coords.style : 'default'],
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
 		};
@@ -35,58 +35,58 @@ function themerex_googlemap_init(dom_obj, coords) {
 						coords.latlng = results[0].geometry.location.toString();
 						coords.latlng = coords.latlng.replace(/\(\)/g, '');
 					}
-					themerex_googlemap_create(id, coords.latlng);
+					 _googlemap_create(id, coords.latlng);
 				} else
-					alert(THEMEREX_GLOBALS['strings']['geocode_error'] + ' ' + status);
+					alert( _GLOBALS['strings']['geocode_error'] + ' ' + status);
 			});
 		} else
-			themerex_googlemap_create(id, coords.latlng);
+			 _googlemap_create(id, coords.latlng);
 
 	} catch (e) {
-		alert(THEMEREX_GLOBALS['strings']['googlemap_not_avail']);
+		alert( _GLOBALS['strings']['googlemap_not_avail']);
 	};
 }
 
-function themerex_googlemap_create(id) {
+function  _googlemap_create(id) {
 	"use strict";
 	var latlng = arguments[1] ? arguments[1] : '';
 	if (latlng) {
 		var latlngStr = latlng.split(',');
-		THEMEREX_GLOBALS['googlemap_init_obj'][id].opt.center = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
+		 _GLOBALS['googlemap_init_obj'][id].opt.center = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
 	}
-	THEMEREX_GLOBALS['googlemap_init_obj'][id].map = new google.maps.Map(THEMEREX_GLOBALS['googlemap_init_obj'][id].dom, THEMEREX_GLOBALS['googlemap_init_obj'][id].opt);
-	//THEMEREX_GLOBALS['googlemap_init_obj'][id].map.setCenter(THEMEREX_GLOBALS['googlemap_init_obj'][id].opt.center);
+	 _GLOBALS['googlemap_init_obj'][id].map = new google.maps.Map( _GLOBALS['googlemap_init_obj'][id].dom,  _GLOBALS['googlemap_init_obj'][id].opt);
+	// _GLOBALS['googlemap_init_obj'][id].map.setCenter( _GLOBALS['googlemap_init_obj'][id].opt.center);
 	var markerInit = {
-		map: THEMEREX_GLOBALS['googlemap_init_obj'][id].map,
-		position: THEMEREX_GLOBALS['googlemap_init_obj'][id].opt.center	//THEMEREX_GLOBALS['googlemap_init_obj'][id].map.getCenter()
+		map:  _GLOBALS['googlemap_init_obj'][id].map,
+		position:  _GLOBALS['googlemap_init_obj'][id].opt.center	// _GLOBALS['googlemap_init_obj'][id].map.getCenter()
 	};
-	if (THEMEREX_GLOBALS['googlemap_init_obj'][id].point) markerInit.icon = THEMEREX_GLOBALS['googlemap_init_obj'][id].point;
-	if (THEMEREX_GLOBALS['googlemap_init_obj'][id].title) markerInit.title = THEMEREX_GLOBALS['googlemap_init_obj'][id].title;
+	if ( _GLOBALS['googlemap_init_obj'][id].point) markerInit.icon =  _GLOBALS['googlemap_init_obj'][id].point;
+	if ( _GLOBALS['googlemap_init_obj'][id].title) markerInit.title =  _GLOBALS['googlemap_init_obj'][id].title;
 	var marker = new google.maps.Marker(markerInit);
 	var infowindow = new google.maps.InfoWindow({
-		content: THEMEREX_GLOBALS['googlemap_init_obj'][id].description
+		content:  _GLOBALS['googlemap_init_obj'][id].description
 	});
 	google.maps.event.addListener(marker, "click", function() {
-		infowindow.open(THEMEREX_GLOBALS['googlemap_init_obj'][id].map, marker);
+		infowindow.open( _GLOBALS['googlemap_init_obj'][id].map, marker);
 	});
 	jQuery(window).resize(function() {
-		if (THEMEREX_GLOBALS['googlemap_init_obj'][id].map)
-			THEMEREX_GLOBALS['googlemap_init_obj'][id].map.setCenter(THEMEREX_GLOBALS['googlemap_init_obj'][id].opt.center);
+		if ( _GLOBALS['googlemap_init_obj'][id].map)
+			 _GLOBALS['googlemap_init_obj'][id].map.setCenter( _GLOBALS['googlemap_init_obj'][id].opt.center);
 	});
 }
 
-function themerex_googlemap_refresh() {
+function  _googlemap_refresh() {
 	"use strict";
-	for (id in THEMEREX_GLOBALS['googlemap_init_obj']) {
-		themerex_googlemap_create(id);
+	for (id in  _GLOBALS['googlemap_init_obj']) {
+		 _googlemap_create(id);
 	}
 }
 
-function themerex_googlemap_init_styles() {
+function  _googlemap_init_styles() {
 	"use strict";
 	// Init Google map
-	THEMEREX_GLOBALS['googlemap_init_obj'] = {};
-	THEMEREX_GLOBALS['googlemap_styles'] = {
+	 _GLOBALS['googlemap_init_obj'] = {};
+	 _GLOBALS['googlemap_styles'] = {
 		'default': [],
 		'invert': [ { "stylers": [ { "invert_lightness": true }, { "visibility": "on" } ] } ],
 		'dark': [{"featureType":"landscape","stylers":[{ "invert_lightness": true },{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}],

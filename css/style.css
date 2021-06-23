@@ -1,6 +1,5 @@
 @charset 'utf-8';
 /*
-
 Tags: light, responsive-layout, flexible-header, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, full-width-template, microformats, post-formats, theme-options, threaded-comments, translation-ready
 */
 
@@ -3176,7 +3175,7 @@ blockquote cite {
 }
 
 
-/* Widget: ThemeREX Advertisement */
+/* Widget:   Advertisement */
 .widget_area .widget_advert .image_wrap {
 	overflow:hidden;
 	display:block;
@@ -3184,7 +3183,7 @@ blockquote cite {
 }
 
 
-/* Widget: ThemeREX Flickr */
+/* Widget:   Flickr */
 .widget_area .widget_flickr {
 	overflow:hidden;
 }
@@ -3206,7 +3205,7 @@ blockquote cite {
 }
 
 
-/* Widget: ThemeREX Logo and Socials */
+/* Widget:   Logo and Socials */
 .widget_area .widget_socials .logo {
 	overflow:hidden;
 	margin-bottom:1em;
@@ -3224,7 +3223,7 @@ blockquote cite {
 }
 
 
-/* Widget: ThemeREX Twitter */
+/* Widget:   Twitter */
 .widget_area .widget_twitter ul li {
 	padding-left:1.5em;
 }

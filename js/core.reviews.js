@@ -1,25 +1,25 @@
 /* global jQuery:false */
-/* global THEMEREX_GLOBALS:false */
+/* global  _GLOBALS:false */
 
 jQuery(document).ready(function () {
 	"use strict";
 
-	THEMEREX_GLOBALS['reviews_user_accepted'] = false;
+	 _GLOBALS['reviews_user_accepted'] = false;
 
-	themerex_add_hidden_elements_handler('init_reviews', themerex_init_reviews);
+	 _add_hidden_elements_handler('init_reviews',  _init_reviews);
 
-	themerex_init_reviews(jQuery('body'));
+	 _init_reviews(jQuery('body'));
 });
 
 
 // Init reviews elements
-function themerex_init_reviews(cont) {
+function  _init_reviews(cont) {
 	"use strict";
 
 	// Drag slider - set new rating
 	cont.find('.reviews_editable .reviews_slider:not(.inited)').each(function() {
 		"use strict";
-		if (typeof(THEMEREX_GLOBALS['reviews_allow_user_marks'])=='undefined' || !THEMEREX_GLOBALS['reviews_allow_user_marks']) return;
+		if (typeof( _GLOBALS['reviews_allow_user_marks'])=='undefined' || ! _GLOBALS['reviews_allow_user_marks']) return;
 		if (jQuery(this).parents('div:hidden,article:hidden').length > 0) return;
 		jQuery(this).addClass('inited');
 		var row  = jQuery(this).parents('.reviews_item');
@@ -32,7 +32,7 @@ function themerex_init_reviews(cont) {
 		// Move slider to init position
 		var val = parseFloat(row.find('input[type="hidden"]').val());
 		var x = Math.round((val - rangeMin) * (wrap.width()-jQuery(this).width()) / (rangeMax - rangeMin));
-		themerex_reviews_set_current_mark(row, val, x, false);
+		 _reviews_set_current_mark(row, val, x, false);
 		jQuery(this).draggable({
 			axis: 'x',
 			grid: [grid, grid],
@@ -42,7 +42,7 @@ function themerex_init_reviews(cont) {
 				"use strict";
 				var pos = ui.position.left >= 0 ? ui.position.left : ui.originalPosition.left + ui.offset.left;
 				var val = Math.min(rangeMax, Math.max(rangeMin, Math.round(pos * prec * (rangeMax - rangeMin) / (wrap.width()-jQuery(this).width())) / prec + rangeMin));
-				themerex_reviews_set_current_mark(row, val);
+				 _reviews_set_current_mark(row, val);
 			}
 		});
 	});
@@ -54,7 +54,7 @@ function themerex_init_reviews(cont) {
 		jQuery(this).addClass('inited');
 		jQuery(this).click(function (e) {
 			"use strict";
-			if (typeof(THEMEREX_GLOBALS['reviews_allow_user_marks'])=='undefined' || !THEMEREX_GLOBALS['reviews_allow_user_marks']) return;
+			if (typeof( _GLOBALS['reviews_allow_user_marks'])=='undefined' || ! _GLOBALS['reviews_allow_user_marks']) return;
 			if (jQuery(this).hasClass('reviews_criteria') && !jQuery(this).next().hasClass('reviews_editable')) return;
 			var wrap = jQuery(this).hasClass('reviews_criteria') ? jQuery(this).next() : jQuery(this);
 			var row  = wrap.parents('.reviews_item');
@@ -68,7 +68,7 @@ function themerex_init_reviews(cont) {
 			if (wrapX <= 1) wrapX = 0;
 			if (wrapX > wrapWidth) wrapX = wrapWidth;
 			var val = Math.min(rangeMax, Math.max(rangeMin, Math.round(wrapX * prec * (rangeMax - rangeMin) / wrapWidth) / prec + rangeMin));
-			themerex_reviews_set_current_mark(row, val, wrapX);
+			 _reviews_set_current_mark(row, val, wrapX);
 		});
 	});
 
@@ -79,7 +79,7 @@ function themerex_init_reviews(cont) {
 		jQuery(this).addClass('inited');
 		jQuery(this).find('a').click(function(e) {
 			"use strict";
-			if (typeof(THEMEREX_GLOBALS['reviews_allow_user_marks'])=='undefined' || !THEMEREX_GLOBALS['reviews_allow_user_marks']) return;
+			if (typeof( _GLOBALS['reviews_allow_user_marks'])=='undefined' || ! _GLOBALS['reviews_allow_user_marks']) return;
 			var marks_cnt = 0;
 			var marks_sum = 0;
 			var marks_accept = jQuery(this).parents('.reviews_accept');
@@ -91,40 +91,40 @@ function themerex_init_reviews(cont) {
 				var prec  = Math.pow(10, step.toString().indexOf('.') < 0 ? 0 : step.toString().length - step.toString().indexOf('.') - 1);
 				var mark = parseFloat(jQuery(this).val());
 				if (isNaN(mark)) mark = 0;
-				THEMEREX_GLOBALS['reviews_marks'][idx] = Math.round(((THEMEREX_GLOBALS['reviews_marks'].length>idx && THEMEREX_GLOBALS['reviews_marks'][idx]!='' 
-					? parseFloat(THEMEREX_GLOBALS['reviews_marks'][idx])*THEMEREX_GLOBALS['reviews_users'] 
-					: 0) + mark) / (THEMEREX_GLOBALS['reviews_users']+1)*prec)/prec;
-				jQuery(this).val(THEMEREX_GLOBALS['reviews_marks'][idx]);
+				 _GLOBALS['reviews_marks'][idx] = Math.round((( _GLOBALS['reviews_marks'].length>idx &&  _GLOBALS['reviews_marks'][idx]!='' 
+					? parseFloat( _GLOBALS['reviews_marks'][idx])* _GLOBALS['reviews_users'] 
+					: 0) + mark) / ( _GLOBALS['reviews_users']+1)*prec)/prec;
+				jQuery(this).val( _GLOBALS['reviews_marks'][idx]);
 				marks_cnt++;
 				marks_sum += mark;
 			});
 			if (marks_sum > 0) {
-				if (THEMEREX_GLOBALS['reviews_marks'].length > marks_cnt)
-					THEMEREX_GLOBALS['reviews_marks'] = THEMEREX_GLOBALS['reviews_marks'].splice(marks_cnt, THEMEREX_GLOBALS['reviews_marks'].length-marks_cnt)
-				THEMEREX_GLOBALS['reviews_users']++;
+				if ( _GLOBALS['reviews_marks'].length > marks_cnt)
+					 _GLOBALS['reviews_marks'] =  _GLOBALS['reviews_marks'].splice(marks_cnt,  _GLOBALS['reviews_marks'].length-marks_cnt)
+				 _GLOBALS['reviews_users']++;
 				marks_accept.fadeOut();
-				jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+				jQuery.post( _GLOBALS['ajax_url'], {
 					action: 'reviews_users_accept',
-					nonce: THEMEREX_GLOBALS['ajax_nonce'],
-					post_id: THEMEREX_GLOBALS['post_id'],
-					marks: THEMEREX_GLOBALS['reviews_marks'].join(','),
-					users: THEMEREX_GLOBALS['reviews_users']
+					nonce:  _GLOBALS['ajax_nonce'],
+					post_id:  _GLOBALS['post_id'],
+					marks:  _GLOBALS['reviews_marks'].join(','),
+					users:  _GLOBALS['reviews_users']
 				}).done(function(response) {
 					var rez = JSON.parse(response);
 					if (rez.error === '') {
-						THEMEREX_GLOBALS['reviews_allow_user_marks'] = false;
-						themerex_set_cookie('themerex_votes', THEMEREX_GLOBALS['reviews_vote'] + (THEMEREX_GLOBALS['reviews_vote'].substr(-1)!=',' ? ',' : '') + THEMEREX_GLOBALS['post_id'] + ',', 365);
+						 _GLOBALS['reviews_allow_user_marks'] = false;
+						 _set_cookie(' _votes',  _GLOBALS['reviews_vote'] + ( _GLOBALS['reviews_vote'].substr(-1)!=',' ? ',' : '') +  _GLOBALS['post_id'] + ',', 365);
 						marks_panel.find('.reviews_item').each(function (idx) {
-							jQuery(this).data('mark', THEMEREX_GLOBALS['reviews_marks'][idx])
-								.find('input[type="hidden"]').val(THEMEREX_GLOBALS['reviews_marks'][idx]).end()
-								.find('.reviews_value').html(THEMEREX_GLOBALS['reviews_marks'][idx]).end()
-								.find('.reviews_stars_hover').css('width', Math.round(THEMEREX_GLOBALS['reviews_marks'][idx]/THEMEREX_GLOBALS['reviews_max_level']*100) + '%');
+							jQuery(this).data('mark',  _GLOBALS['reviews_marks'][idx])
+								.find('input[type="hidden"]').val( _GLOBALS['reviews_marks'][idx]).end()
+								.find('.reviews_value').html( _GLOBALS['reviews_marks'][idx]).end()
+								.find('.reviews_stars_hover').css('width', Math.round( _GLOBALS['reviews_marks'][idx]/ _GLOBALS['reviews_max_level']*100) + '%');
 						});
-						themerex_reviews_set_average_mark(marks_panel);
+						 _reviews_set_average_mark(marks_panel);
 						marks_panel.find('.reviews_stars').removeClass('reviews_editable');
-						marks_panel.siblings('.reviews_summary').find('.reviews_criteria').html(THEMEREX_GLOBALS['strings']['reviews_vote']);
+						marks_panel.siblings('.reviews_summary').find('.reviews_criteria').html( _GLOBALS['strings']['reviews_vote']);
 					} else {
-						marks_panel.siblings('.reviews_summary').find('.reviews_criteria').html(THEMEREX_GLOBALS['strings']['reviews_error']);
+						marks_panel.siblings('.reviews_summary').find('.reviews_criteria').html( _GLOBALS['strings']['reviews_error']);
 					}
 				});
 			}
@@ -136,7 +136,7 @@ function themerex_init_reviews(cont) {
 
 
 // Set current mark value
-function themerex_reviews_set_current_mark(row, val) {
+function  _reviews_set_current_mark(row, val) {
 	"use strict";
 	var x = arguments[2]!=undefined ? arguments[2] : -1;
 	var clear = arguments[3]!=undefined ? arguments[3] : true;
@@ -147,8 +147,8 @@ function themerex_reviews_set_current_mark(row, val) {
 	row.find('.reviews_stars_hover').css('width', Math.round(row.find('.reviews_stars_bg').width()*val/(rangeMax-rangeMin))+'px');
 	if (x >=0) row.find('.reviews_slider').css('left', x+'px');
 	// Clear user marks and show Accept Button
-	if (!THEMEREX_GLOBALS['admin_mode'] && !THEMEREX_GLOBALS['reviews_user_accepted'] && clear) {
-		THEMEREX_GLOBALS['reviews_user_accepted'] = true;
+	if (! _GLOBALS['admin_mode'] && ! _GLOBALS['reviews_user_accepted'] && clear) {
+		 _GLOBALS['reviews_user_accepted'] = true;
 		row.siblings('.reviews_item').each(function () {
 			"use strict";
 			jQuery(this).find('.reviews_stars_hover').css('width', 0);
@@ -159,11 +159,11 @@ function themerex_reviews_set_current_mark(row, val) {
 		// Show Accept button
 		row.parent().next().fadeIn();
 	}
-	themerex_reviews_set_average_mark(row.parents('.reviews_editor'));
+	 _reviews_set_average_mark(row.parents('.reviews_editor'));
 }
 
 // Show average mark
-function themerex_reviews_set_average_mark(obj) {
+function  _reviews_set_average_mark(obj) {
 	"use strict";
 	var avg = 0;
 	var cnt = 0;
@@ -184,10 +184,10 @@ function themerex_reviews_set_average_mark(obj) {
 }
 
 // Convert percent to rating marks level
-function themerex_reviews_marks_to_display(mark) {
+function  _reviews_marks_to_display(mark) {
 	"use strict";
-	if (THEMEREX_GLOBALS['reviews_max_level'] < 100) {
-		mark = Math.round(mark / 100 * THEMEREX_GLOBALS['reviews_max_level'] * 10) / 10;
+	if ( _GLOBALS['reviews_max_level'] < 100) {
+		mark = Math.round(mark / 100 *  _GLOBALS['reviews_max_level'] * 10) / 10;
 		if (String(mark).indexOf('.') < 0) {
 			mark += '.0';
 		}
@@ -196,10 +196,10 @@ function themerex_reviews_marks_to_display(mark) {
 }
 
 // Get word-value review rating
-function themerex_reviews_get_word_value(r) {
+function  _reviews_get_word_value(r) {
 	"use strict";
-	var words = THEMEREX_GLOBALS['reviews_levels'].split(',');
-	var k = THEMEREX_GLOBALS['reviews_max_level'] / words.length;
+	var words =  _GLOBALS['reviews_levels'].split(',');
+	var k =  _GLOBALS['reviews_max_level'] / words.length;
 	r = Math.max(0, Math.min(words.length-1, Math.floor(r/k)));
 	return words[r];
 }

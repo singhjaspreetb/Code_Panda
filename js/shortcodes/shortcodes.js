@@ -1,12 +1,12 @@
 // Document ready actions for shortcodes
 jQuery(document).ready(function(){
 	"use strict";
-	setTimeout(themerex_animation_shortcodes, 600);
+	setTimeout( _animation_shortcodes, 600);
 });
 
 
 // Animation
-function themerex_animation_shortcodes() {
+function  _animation_shortcodes() {
 	jQuery('[data-animation^="animated"]:not(.animated)').each(function() {
 		"use strict";
 		if (jQuery(this).offset().top < jQuery(window).scrollTop() + jQuery(window).height())
@@ -16,7 +16,7 @@ function themerex_animation_shortcodes() {
 
 
 // Shortcodes init
-function themerex_init_shortcodes(container) {
+function  _init_shortcodes(container) {
 
 	// Accordion
 	if (container.find('.sc_accordion:not(.inited)').length > 0) {
@@ -32,15 +32,15 @@ function themerex_init_shortcodes(container) {
 					heightStyle: "content",
 					header: "> .sc_accordion_item > .sc_accordion_title",
 					create: function (event, ui) {
-						themerex_init_shortcodes(ui.panel);
-						if (window.themerex_init_hidden_elements) themerex_init_hidden_elements(ui.panel);
+						 _init_shortcodes(ui.panel);
+						if (window. _init_hidden_elements)  _init_hidden_elements(ui.panel);
 						ui.header.each(function () {
 							jQuery(this).parent().addClass('sc_active');
 						});
 					},
 					activate: function (event, ui) {
-						themerex_init_shortcodes(ui.newPanel);
-						if (window.themerex_init_hidden_elements) themerex_init_hidden_elements(ui.newPanel);
+						 _init_shortcodes(ui.newPanel);
+						if (window. _init_hidden_elements)  _init_hidden_elements(ui.newPanel);
 						ui.newHeader.each(function () {
 							jQuery(this).parent().addClass('sc_active');
 						});
@@ -58,7 +58,7 @@ function themerex_init_shortcodes(container) {
 			.addClass('inited')
 			.submit(function(e) {
 				"use strict";
-				themerex_contact_form_validate(jQuery(this));
+				 _contact_form_validate(jQuery(this));
 				e.preventDefault();
 				return false;
 			});
@@ -85,13 +85,13 @@ function themerex_init_shortcodes(container) {
 					jQuery(this).find('.sc_countdown_placeholder').countdown({
 						until: new Date(endDateParts[0], endDateParts[1]-1, endDateParts[2], endTimeParts[0], endTimeParts[1], endTimeParts[2]), 
 						tickInterval: interval,
-						onTick: themerex_countdown
+						onTick:  _countdown
 					}); 
 				} else {
 					jQuery(this).find('.sc_countdown_placeholder').countdown({
 						since: new Date(endDateParts[0], endDateParts[1]-1, endDateParts[2], endTimeParts[0], endTimeParts[1], endTimeParts[2]), 
 						tickInterval: interval,
-						onTick: themerex_countdown
+						onTick:  _countdown
 					}); 
 				}
 			});
@@ -110,23 +110,23 @@ function themerex_init_shortcodes(container) {
 					if (form.length>0 && form.find('input').val()!='') {
 						var group = jQuery(this).data('group');
 						var email = form.find('input').val();
-						var regexp = new RegExp(THEMEREX_GLOBALS['email_mask']);
+						var regexp = new RegExp( _GLOBALS['email_mask']);
 						if (!regexp.test(email)) {
 							form.find('input').get(0).focus();
-							themerex_message_warning(THEMEREX_GLOBALS['strings']['email_not_valid']);
+							 _message_warning( _GLOBALS['strings']['email_not_valid']);
 						} else {
-							jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+							jQuery.post( _GLOBALS['ajax_url'], {
 								action: 'emailer_submit',
-								nonce: THEMEREX_GLOBALS['ajax_nonce'],
+								nonce:  _GLOBALS['ajax_nonce'],
 								group: group,
 								email: email
 							}).done(function(response) {
 								var rez = JSON.parse(response);
 								if (rez.error === '') {
-									themerex_message_info(THEMEREX_GLOBALS['strings']['email_confirm'].replace('%s', email));
+									 _message_info( _GLOBALS['strings']['email_confirm'].replace('%s', email));
 									form.find('input').val('');
 								} else {
-									themerex_message_warning(rez.error);
+									 _message_warning(rez.error);
 								}
 							});
 						}
@@ -155,7 +155,7 @@ function themerex_init_shortcodes(container) {
 				var map_descr	= map.data('description');
 				var map_title	= map.data('title');
 				var map_point	= map.data('point');
-				themerex_googlemap_init( jQuery('#'+map_id).get(0), {address: map_address , latlng: map_latlng, style: map_style, zoom: map_zoom, description: map_descr, title: map_title, point: map_point});
+				 _googlemap_init( jQuery('#'+map_id).get(0), {address: map_address , latlng: map_latlng, style: map_style, zoom: map_zoom, description: map_descr, title: map_title, point: map_point});
 			});
 	}
 
@@ -239,11 +239,11 @@ function themerex_init_shortcodes(container) {
 						clearTimeout(ajax_timer);
 						ajax_timer = null;
 					}
-					if (s.length >= THEMEREX_GLOBALS['ajax_search_min_length']) {
+					if (s.length >=  _GLOBALS['ajax_search_min_length']) {
 						ajax_timer = setTimeout(function() {
-							jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+							jQuery.post( _GLOBALS['ajax_url'], {
 								action: 'ajax_search',
-								nonce: THEMEREX_GLOBALS['ajax_nonce'],
+								nonce:  _GLOBALS['ajax_nonce'],
 								text: s
 							}).done(function(response) {
 								clearTimeout(ajax_timer);
@@ -253,10 +253,10 @@ function themerex_init_shortcodes(container) {
 									search_field.parents('.search_ajax').find('.search_results_content').empty().append(rez.data);
 									search_field.parents('.search_ajax').find('.search_results').fadeIn();
 								} else {
-									themerex_message_warning(THEMEREX_GLOBALS['strings']['search_error']);
+									 _message_warning( _GLOBALS['strings']['search_error']);
 								}
 							});
-						}, THEMEREX_GLOBALS['ajax_search_delay']);
+						},  _GLOBALS['ajax_search_delay']);
 					}
 				});
 			}
@@ -296,8 +296,8 @@ function themerex_init_shortcodes(container) {
 			.each(function () {
 				"use strict";
 				if (jQuery(this).parents('div:hidden,article:hidden').length > 0) return;
-				THEMEREX_GLOBALS['scroll_init_counter'] = 0;
-				themerex_init_scroll_area(jQuery(this));
+				 _GLOBALS['scroll_init_counter'] = 0;
+				 _init_scroll_area(jQuery(this));
 			});
 	}
 
@@ -310,7 +310,7 @@ function themerex_init_shortcodes(container) {
 				if (jQuery(this).parents('div:hidden,article:hidden').length > 0) return;
 				//if (jQuery(this).parents('.isotope_wrap:not(.inited)').length > 0) return;
 				jQuery(this).addClass('inited');
-				themerex_slider_autoheight(jQuery(this));
+				 _slider_autoheight(jQuery(this));
 				if (jQuery(this).parents('.sc_slider_pagination_area').length > 0) {
 					jQuery(this).parents('.sc_slider_pagination_area').find('.sc_slider_pagination .post_item').eq(0).addClass('active');
 				}
@@ -322,8 +322,8 @@ function themerex_init_shortcodes(container) {
 				}
 				jQuery(this).addClass(id);
 				jQuery(this).find('.slides .swiper-slide').css('position', 'relative');
-				if (THEMEREX_GLOBALS['swipers'] === undefined) THEMEREX_GLOBALS['swipers'] = {};
-				THEMEREX_GLOBALS['swipers'][id] = new Swiper('.'+id, {
+				if ( _GLOBALS['swipers'] === undefined)  _GLOBALS['swipers'] = {};
+				 _GLOBALS['swipers'][id] = new Swiper('.'+id, {
 					calculateHeight: !jQuery(this).hasClass('sc_slider_height_fixed'),
 					resizeReInit: true,
 					autoResize: true,
@@ -368,7 +368,7 @@ function themerex_init_shortcodes(container) {
 						if (cont.parents('.sc_slider_pagination_area').length > 0) {
 							var li = cont.parents('.sc_slider_pagination_area').find('.sc_slider_pagination .post_item');
 							var idx = slider.activeIndex > li.length ? 0 : slider.activeIndex-1;
-							themerex_change_active_pagination_in_slider(cont, idx);
+							 _change_active_pagination_in_slider(cont, idx);
 						}
 					}
 				});
@@ -377,20 +377,20 @@ function themerex_init_shortcodes(container) {
 				
 				var curSlide = jQuery(this).find('.slides').data('current-slide');
 				if (curSlide > 0)
-					THEMEREX_GLOBALS['swipers'][id].swipeTo(curSlide-1);
-				themerex_prepare_slider_navi(jQuery(this));
+					 _GLOBALS['swipers'][id].swipeTo(curSlide-1);
+				 _prepare_slider_navi(jQuery(this));
 			});
 	}
 
 	//Skills init
 	if (container.find('.sc_skills_item:not(.inited)').length > 0) {
-		themerex_init_skills(container);
-		jQuery(window).scroll(function () { themerex_init_skills(container); });
+		 _init_skills(container);
+		jQuery(window).scroll(function () {  _init_skills(container); });
 	}
 	//Skills type='arc' init
 	if (container.find('.sc_skills_arc:not(.inited)').length > 0) {
-		themerex_init_skills_arc(container);
-		jQuery(window).scroll(function () { themerex_init_skills_arc(container); });
+		 _init_skills_arc(container);
+		jQuery(window).scroll(function () {  _init_skills_arc(container); });
 	}
 
 	// Tabs
@@ -412,12 +412,12 @@ function themerex_init_shortcodes(container) {
 						duration: 300
 					},
 					create: function (event, ui) {
-						themerex_init_shortcodes(ui.panel);
-						if (window.themerex_init_hidden_elements) themerex_init_hidden_elements(ui.panel);
+						 _init_shortcodes(ui.panel);
+						if (window. _init_hidden_elements)  _init_hidden_elements(ui.panel);
 					},
 					activate: function (event, ui) {
-						themerex_init_shortcodes(ui.newPanel);
-						if (window.themerex_init_hidden_elements) themerex_init_hidden_elements(ui.newPanel);
+						 _init_shortcodes(ui.newPanel);
+						if (window. _init_hidden_elements)  _init_hidden_elements(ui.newPanel);
 					}
 				});
 		});
@@ -430,8 +430,8 @@ function themerex_init_shortcodes(container) {
 			.click(function () {
 				jQuery(this).toggleClass('ui-state-active').parent().toggleClass('sc_active');
 				jQuery(this).parent().find('.sc_toggles_content').slideToggle(300, function () { 
-					themerex_init_shortcodes(jQuery(this).parent().find('.sc_toggles_content')); 
-					if (window.themerex_init_hidden_elements) themerex_init_hidden_elements(jQuery(this).parent().find('.sc_toggles_content'));
+					 _init_shortcodes(jQuery(this).parent().find('.sc_toggles_content')); 
+					if (window. _init_hidden_elements)  _init_hidden_elements(jQuery(this).parent().find('.sc_toggles_content'));
 				});
 			});
 	}
@@ -458,11 +458,11 @@ function themerex_init_shortcodes(container) {
 
 
 // Scrolled areas
-function themerex_init_scroll_area(obj) {
+function  _init_scroll_area(obj) {
 
 	// Wait for images loading
-	if (!themerex_check_images_complete(obj) && THEMEREX_GLOBALS['scroll_init_counter']++ < 30) {
-		setTimeout(function() { themerex_init_scroll_area(obj); }, 200);
+	if (! _check_images_complete(obj) &&  _GLOBALS['scroll_init_counter']++ < 30) {
+		setTimeout(function() {  _init_scroll_area(obj); }, 200);
 		return;
 	}
 
@@ -481,8 +481,8 @@ function themerex_init_scroll_area(obj) {
 	}
 
 	// Init Swiper with scroll plugin
-	if (THEMEREX_GLOBALS['swipers'] === undefined) THEMEREX_GLOBALS['swipers'] = {};
-	THEMEREX_GLOBALS['swipers'][id] = new Swiper('.'+id, {
+	if ( _GLOBALS['swipers'] === undefined)  _GLOBALS['swipers'] = {};
+	 _GLOBALS['swipers'][id] = new Swiper('.'+id, {
 		calculateHeight: false,
 		resizeReInit: true,
 		autoResize: true,
@@ -505,12 +505,12 @@ function themerex_init_scroll_area(obj) {
 	
 	obj.data('settings', {mode: 'horizontal'});		
 	
-	themerex_prepare_slider_navi(obj);
+	 _prepare_slider_navi(obj);
 }
 
 
 // Slider navigation
-function themerex_prepare_slider_navi(slider) {
+function  _prepare_slider_navi(slider) {
 	// Prev / Next
 	var navi = slider.find('> .sc_slider_controls_wrap, > .sc_scroll_controls_wrap');
 	if (navi.length == 0) navi = slider.siblings('.sc_slider_controls_wrap,.sc_scroll_controls_wrap');
@@ -519,7 +519,7 @@ function themerex_prepare_slider_navi(slider) {
 			var swiper = jQuery(this).parents('.swiper-slider-container');
 			if (swiper.length == 0) swiper = jQuery(this).parents('.sc_slider_controls_wrap,.sc_scroll_controls_wrap').siblings('.swiper-slider-container');
 			var id = swiper.attr('id');
-			THEMEREX_GLOBALS['swipers'][id].swipePrev();
+			 _GLOBALS['swipers'][id].swipePrev();
 			e.preventDefault();
 			return false;
 		});
@@ -527,7 +527,7 @@ function themerex_prepare_slider_navi(slider) {
 			var swiper = jQuery(this).parents('.swiper-slider-container');
 			if (swiper.length == 0) swiper = jQuery(this).parents('.sc_slider_controls_wrap,.sc_scroll_controls_wrap').siblings('.swiper-slider-container');
 			var id = swiper.attr('id');
-			THEMEREX_GLOBALS['swipers'][id].swipeNext();
+			 _GLOBALS['swipers'][id].swipeNext();
 			e.preventDefault();
 			return false;
 		});
@@ -539,14 +539,14 @@ function themerex_prepare_slider_navi(slider) {
 		navi.find('.post_item').click(function(e){
 			var swiper = jQuery(this).parents('.sc_slider_pagination_area').find('.swiper-slider-container');
 			var id = swiper.attr('id');
-			THEMEREX_GLOBALS['swipers'][id].swipeTo(jQuery(this).index());
+			 _GLOBALS['swipers'][id].swipeTo(jQuery(this).index());
 			e.preventDefault();
 			return false;
 		});
 	}
 }
 
-function themerex_change_active_pagination_in_slider(slider, idx) {
+function  _change_active_pagination_in_slider(slider, idx) {
 	var pg = slider.parents('.sc_slider_pagination_area').find('.sc_slider_pagination');
 	if (pg.length==0) return;
 	pg.find('.post_item').removeClass('active').eq(idx).addClass('active');
@@ -562,7 +562,7 @@ function themerex_change_active_pagination_in_slider(slider, idx) {
 }
 
 // Sliders: Autoheight
-function themerex_slider_autoheight(slider) {
+function  _slider_autoheight(slider) {
 	if (slider.hasClass('.sc_slider_height_auto')) {
 		slider.find('.swiper-slide').each(function() {
 			if (jQuery(this).data('height_auto') == undefined) {
@@ -574,7 +574,7 @@ function themerex_slider_autoheight(slider) {
 
 
 // Skills init
-function themerex_init_skills(container) {
+function  _init_skills(container) {
 	if (arguments.length==0) var container = jQuery('body');
 	var scrollPosition = jQuery(window).scrollTop() + jQuery(window).height();
 
@@ -602,9 +602,9 @@ function themerex_init_skills(container) {
 					count.css('width', startPercent + '%').animate({ width: stopPercent + '%' }, duration);
 				else if (dir=='vertical')
 					count.css('height', startPercent + '%').animate({ height: stopPercent + '%' }, duration);
-				themerex_animate_skills_counter(start, stop, speed-(dir!='unknown' ? 5 : 0), step, ed, total);
+				 _animate_skills_counter(start, stop, speed-(dir!='unknown' ? 5 : 0), step, ed, total);
 			} else if (type == 'counter') {
-				themerex_animate_skills_counter(start, stop, speed - 5, step, ed, total);
+				 _animate_skills_counter(start, stop, speed - 5, step, ed, total);
 			} else if (type == 'pie') {
 				var steps = parseInt(total.data('steps'));
 				var bg_color = total.data('bg_color');
@@ -632,7 +632,7 @@ function themerex_init_skills(container) {
 					});
 				});
 				if (total.length == 1) {
-					themerex_animate_skills_counter(start, stop, Math.round(1500/steps), step, ed, total);
+					 _animate_skills_counter(start, stop, Math.round(1500/steps), step, ed, total);
 					pieData.push({
 						value: 100-stopPercent,
 						color: bg_color
@@ -647,18 +647,18 @@ function themerex_init_skills(container) {
 }
 
 // Skills counter animation
-function themerex_animate_skills_counter(start, stop, speed, step, ed, total) {
+function  _animate_skills_counter(start, stop, speed, step, ed, total) {
 	start = Math.min(stop, start + step);
 	total.text(start+ed);
 	if (start < stop) {
 		setTimeout(function () {
-			themerex_animate_skills_counter(start, stop, speed, step, ed, total);
+			 _animate_skills_counter(start, stop, speed, step, ed, total);
 		}, speed);
 	}
 }
 
 // Skills arc init
-function themerex_init_skills_arc(container) {
+function  _init_skills_arc(container) {
 	if (arguments.length==0) var container = jQuery('body');
 	container.find('.sc_skills_arc:not(.inited)').each(function () {
 		var arc = jQuery(this);
@@ -680,10 +680,10 @@ function themerex_init_skills_arc(container) {
 					speed = 400;
 				
 				
-				r.circle(c, c, Math.round(w/2)).attr({ stroke: 'none', fill: THEMEREX_GLOBALS['theme_skin_bg'] ? THEMEREX_GLOBALS['theme_skin_bg'] : '#ffffff' });
+				r.circle(c, c, Math.round(w/2)).attr({ stroke: 'none', fill:  _GLOBALS['theme_skin_bg'] ?  _GLOBALS['theme_skin_bg'] : '#ffffff' });
 				
 				var title = r.text(c, c, arc.data('subtitle')).attr({
-					font: 'lighter '+Math.round(rad*0.7)+'px "'+THEMEREX_GLOBALS['theme_font']+'"',
+					font: 'lighter '+Math.round(rad*0.7)+'px "'+ _GLOBALS['theme_font']+'"',
 					fill: '#888888'
 				}).toFront();
 				
@@ -735,7 +735,7 @@ function themerex_init_skills_arc(container) {
 
 
 // Countdown update
-function themerex_countdown(dt) {
+function  _countdown(dt) {
 	var counter = jQuery(this).parent();
 	for (var i=3; i<dt.length; i++) {
 		var v = (dt[i]<10 ? '0' : '') + dt[i];

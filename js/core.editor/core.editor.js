@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
 			jQuery('body').append('<div id="frontend_editor_overflow" class="frontend_editor_overflow"></div>')
 		}
 		jQuery('#frontend_editor_overflow').fadeIn(400);
-		jQuery('#frontend_editor_button_cancel').val(THEMEREX_GLOBALS['strings']['editor_caption_cancel']);
+		jQuery('#frontend_editor_button_cancel').val( _GLOBALS['strings']['editor_caption_cancel']);
 		jQuery('#frontend_editor').slideDown();
 		e.preventDefault();
 		return false;
@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
 	//Close frontend editor
 	jQuery('#frontend_editor_button_cancel').click(function (e) {
 		"use strict";
-		if (jQuery(this).val() == THEMEREX_GLOBALS['strings']['editor_caption_close'])
+		if (jQuery(this).val() ==  _GLOBALS['strings']['editor_caption_close'])
 			window.location.reload();
 		else {
 			jQuery('#frontend_editor').slideUp();
@@ -38,17 +38,17 @@ jQuery(document).ready(function () {
 		// Prepare data
 		var data = {
 			action: 'frontend_editor_save',
-			nonce: THEMEREX_GLOBALS['ajax_nonce_editor'],
+			nonce:  _GLOBALS['ajax_nonce_editor'],
 			data: jQuery("#frontend_editor form").serialize()
 		};
-		jQuery.post(THEMEREX_GLOBALS['ajax_url'], data, function(response) {
+		jQuery.post( _GLOBALS['ajax_url'], data, function(response) {
 			"use strict";
 			var rez = JSON.parse(response);
 			if (rez.error == '') {
-				themerex_message_success('', THEMEREX_GLOBALS['strings']['editor_save_success']);
-				jQuery('#frontend_editor_button_cancel').val(THEMEREX_GLOBALS['strings']['editor_caption_close']);
+				 _message_success('',  _GLOBALS['strings']['editor_save_success']);
+				jQuery('#frontend_editor_button_cancel').val( _GLOBALS['strings']['editor_caption_close']);
 			} else {
-				themerex_message_warning(rez.error, THEMEREX_GLOBALS['strings']['editor_save_error']);
+				 _message_warning(rez.error,  _GLOBALS['strings']['editor_save_error']);
 			}
 		});
 		e.preventDefault();
@@ -59,24 +59,24 @@ jQuery(document).ready(function () {
 	//----------------------------------------------------------------
 	jQuery('#frontend_editor_icon_delete').click(function (e) {
 		"use strict";
-		themerex_message_confirm(THEMEREX_GLOBALS['strings']['editor_delete_post'], THEMEREX_GLOBALS['strings']['editor_delete_post_header'], function(btn) {
+		 _message_confirm( _GLOBALS['strings']['editor_delete_post'],  _GLOBALS['strings']['editor_delete_post_header'], function(btn) {
 			"use strict";
 			if (btn != 1) return;
 			var data = {
 				action: 'frontend_editor_delete',
 				post_id: jQuery("#frontend_editor form #frontend_editor_post_id").val(),
-				nonce: THEMEREX_GLOBALS['ajax_nonce_editor']
+				nonce:  _GLOBALS['ajax_nonce_editor']
 			};
-			jQuery.post(THEMEREX_GLOBALS['ajax_url'], data, function(response) {
+			jQuery.post( _GLOBALS['ajax_url'], data, function(response) {
 				"use strict";
 				var rez = JSON.parse(response);
 				if (rez.error == '') {
-					themerex_message_success('', THEMEREX_GLOBALS['strings']['editor_delete_success']);
+					 _message_success('',  _GLOBALS['strings']['editor_delete_success']);
 					setTimeout(function() { 
-						window.location.href = THEMEREX_GLOBALS['site_url'];
+						window.location.href =  _GLOBALS['site_url'];
 						}, 1000);
 				} else {
-					themerex_message_warning(rez.error, THEMEREX_GLOBALS['strings']['editor_delete_error']);
+					 _message_warning(rez.error,  _GLOBALS['strings']['editor_delete_error']);
 				}
 			});
 			

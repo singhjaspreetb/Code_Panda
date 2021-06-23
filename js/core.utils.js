@@ -1,83 +1,75 @@
-/**
- * ThemeREX Framework: global variables storage
- *
- * @package	themerex
- * @since	themerex 1.0
- */
-
-
 /* Global variables manipulations
 ---------------------------------------------------------------- */
 
 // Global variables storage
-if (typeof THEMEREX_GLOBALS == 'undefined') var THEMEREX_GLOBALS = {};
+if (typeof  _GLOBALS == 'undefined') var  _GLOBALS = {};
 
 // Get global variable
-function themerex_get_global(var_name) {
-	return themerex_isset(THEMEREX_GLOBALS[var_name]) ? THEMEREX_GLOBALS[var_name] : '';
+function  _get_global(var_name) {
+	return  _isset( _GLOBALS[var_name]) ?  _GLOBALS[var_name] : '';
 }
 
 // Set global variable
-function themerex_set_global(var_name, value) {
-	THEMEREX_GLOBALS[var_name] = value;
+function  _set_global(var_name, value) {
+	 _GLOBALS[var_name] = value;
 }
 
 // Inc/Dec global variable with specified value
-function themerex_inc_global(var_name) {
+function  _inc_global(var_name) {
 	var value = arguments[1]==undefined ? 1 : arguments[1];
-	THEMEREX_GLOBALS[var_name] += value;
+	 _GLOBALS[var_name] += value;
 }
 
 // Concatenate global variable with specified value
-function themerex_concat_global(var_name, value) {
-	THEMEREX_GLOBALS[var_name] += ''+value;
+function  _concat_global(var_name, value) {
+	 _GLOBALS[var_name] += ''+value;
 }
 
 // Get global array element
-function themerex_get_global_array(var_name, key) {
-	return themerex_isset(THEMEREX_GLOBALS[var_name][key]) ? THEMEREX_GLOBALS[var_name][key] : '';
+function  _get_global_array(var_name, key) {
+	return  _isset( _GLOBALS[var_name][key]) ?  _GLOBALS[var_name][key] : '';
 }
 
 // Set global array element
-function themerex_set_global_array(var_name, key, value) {
-	if (!themerex_isset(THEMEREX_GLOBALS[var_name])) THEMEREX_GLOBALS[var_name] = {};
-	THEMEREX_GLOBALS[var_name][key] = value;
+function  _set_global_array(var_name, key, value) {
+	if (! _isset( _GLOBALS[var_name]))  _GLOBALS[var_name] = {};
+	 _GLOBALS[var_name][key] = value;
 }
 
 // Inc/Dec global array element with specified value
-function themerex_inc_global_array(var_name, key) {
+function  _inc_global_array(var_name, key) {
 	var value = arguments[2]==undefined ? 1 : arguments[2];
-	THEMEREX_GLOBALS[var_name][key] += value;
+	 _GLOBALS[var_name][key] += value;
 }
 
 // Concatenate global array element with specified value
-function themerex_concat_global_array(var_name, key, value) {
-	THEMEREX_GLOBALS[var_name][key] += ''+value;
+function  _concat_global_array(var_name, key, value) {
+	 _GLOBALS[var_name][key] += ''+value;
 }
 
 
 
 /* PHP-style functions
 ---------------------------------------------------------------- */
-function themerex_isset(obj) {
+function  _isset(obj) {
 	return obj != undefined;
 }
 
-function themerex_empty(obj) {
-	return obj == undefined || (typeof(obj)=='object' && obj == null) || (typeof(obj)=='array' && obj.length == 0) || (typeof(obj)=='string' && themerex_alltrim(obj)=='');
+function  _empty(obj) {
+	return obj == undefined || (typeof(obj)=='object' && obj == null) || (typeof(obj)=='array' && obj.length == 0) || (typeof(obj)=='string' &&  _alltrim(obj)=='');
 }
 
-function themerex_is_array(obj)  {
+function  _is_array(obj)  {
 	"use strict";
 	return typeof(obj)=='array';
 }
 
-function themerex_is_object(obj)  {
+function  _is_object(obj)  {
 	"use strict";
 	return typeof(obj)=='object';
 }
 
-function themerex_in_array(val, thearray)  {
+function  _in_array(val, thearray)  {
 	"use strict";
 	var rez = false;
 	for (var i=0; i<thearray.length-1; i++)  {
@@ -89,13 +81,13 @@ function themerex_in_array(val, thearray)  {
 	return rez;
 }
 
-function themerex_clone_object(obj) {
+function  _clone_object(obj) {
 	if (obj == null || typeof(obj) != 'object') {
 		return obj;
 	}
 	var temp = {};
 	for (var key in obj) {
-		temp[key] = themerex_clone_object(obj[key]);
+		temp[key] =  _clone_object(obj[key]);
 	}
 	return temp;
 }
@@ -105,7 +97,7 @@ function themerex_clone_object(obj) {
 /* String functions
 ---------------------------------------------------------------- */
 
-function themerex_in_list(str, list) {
+function  _in_list(str, list) {
 	"use strict";
 	var delim = arguments[2] ? arguments[2] : '|';
 	var icase = arguments[3] ? arguments[3] : true;
@@ -124,7 +116,7 @@ function themerex_in_list(str, list) {
 	return retval;
 }
 
-function themerex_alltrim(str) {
+function  _alltrim(str) {
 	"use strict";
 	var dir = arguments[1] ? arguments[1] : 'a';
 	var rez = '';
@@ -148,17 +140,17 @@ function themerex_alltrim(str) {
 	return str.substring(start, end+1);
 }
 
-function themerex_ltrim(str) {
+function  _ltrim(str) {
 	"use strict";
-	return themerex_alltrim(str, 'l');
+	return  _alltrim(str, 'l');
 }
 
-function themerex_rtrim(str) {
+function  _rtrim(str) {
 	"use strict";
-	return themerex_alltrim(str, 'r');
+	return  _alltrim(str, 'r');
 }
 
-function themerex_padl(str, len) {
+function  _padl(str, len) {
 	"use strict";
 	var ch = arguments[2] ? arguments[2] : ' ';
 	var rez = str.substr(0,len);
@@ -169,7 +161,7 @@ function themerex_padl(str, len) {
 	return rez;
 }
 
-function themerex_padr(str, len) {
+function  _padr(str, len) {
 	"use strict";
 	var ch = arguments[2] ? arguments[2] : ' ';
 	var rez = str.substr(0,len);
@@ -180,7 +172,7 @@ function themerex_padr(str, len) {
 	return rez;
 }
 
-function themerex_padc(str, len) {
+function  _padc(str, len) {
 	"use strict";
 	var ch = arguments[2] ? arguments[2] : ' ';
 	var rez = str.substr(0,len);
@@ -191,7 +183,7 @@ function themerex_padc(str, len) {
 	return rez+(rez.length<len ? ch : '');
 }
 
-function themerex_replicate(str, num) {
+function  _replicate(str, num) {
 	"use strict";
 	var rez = '';
 	for (var i=0; i<num; i++) {
@@ -208,7 +200,7 @@ function themerex_replicate(str, num) {
 // Round number to specified precision. 
 // For example: num=1.12345, prec=2,  rounded=1.12
 //              num=12345,   prec=-2, rounded=12300
-function themerex_round_number(num) {
+function  _round_number(num) {
 	"use strict";
 	var precision = arguments[1] ? arguments[1] : 0;
 	var p = Math.pow(10, precision);
@@ -217,7 +209,7 @@ function themerex_round_number(num) {
 
 // Clear number from any characters and append it with 0 to desired precision
 // For example: num=test1.12dd, prec=3, cleared=1.120
-function themerex_clear_number(num) {
+function  _clear_number(num) {
 	"use strict";
 	var precision = arguments[1] ? arguments[1] : 0;
 	var defa = arguments[2] ? arguments[2] : 0;
@@ -250,13 +242,13 @@ function themerex_clear_number(num) {
 }
 
 // Convert number from decimal to hex
-function themerex_dec2hex(n) { 
+function  _dec2hex(n) { 
 	"use strict";
 	return Number(n).toString(16);
 }
 
 // Convert number from hex to decimal
-function themerex_hex2dec(hex) {
+function  _hex2dec(hex) {
 	"use strict";
 	return parseInt(hex,16); 
 }
@@ -266,7 +258,7 @@ function themerex_hex2dec(hex) {
 /* Array manipulations
 ---------------------------------------------------------------- */
 
-function themerex_sort_array(thearray)  {
+function  _sort_array(thearray)  {
 	"use strict";
 	var caseSensitive = arguments[1] ? arguments[1] : false;
 	for (var x=0; x<thearray.length-1; x++)  {
@@ -296,7 +288,7 @@ function themerex_sort_array(thearray)  {
 
 // Return array[Year, Month, Day, Hours, Minutes, Seconds]
 // from string: Year[-/.]Month[-/.]Day[T ]Hours:Minutes:Seconds
-function themerex_parse_date(dt) {
+function  _parse_date(dt) {
 	"use strict";
 	dt = dt.replace(/\//g, '-').replace(/\./g, '-').replace(/T/g, ' ').split('+')[0];
 	var dt2 = dt.split(' ');
@@ -307,18 +299,18 @@ function themerex_parse_date(dt) {
 }
 
 // Return difference string between two dates
-function themerex_get_date_difference(dt1) {
+function  _get_date_difference(dt1) {
 	"use strict";
 	var dt2 = arguments[1]!==undefined ? arguments[1] : '';
 	var short_date = arguments[2]!==undefined ? arguments[2] : true;
 	var sec = arguments[3]!==undefined ? arguments[3] : false;
-	var a1 = themerex_parse_date(dt1);
+	var a1 =  _parse_date(dt1);
 	dt1 = Date.UTC(a1[0], a1[1], a1[2], a1[3], a1[4], a1[5]);
 	if (dt2 == '') {
 		dt2 = new Date();
 		var a2 = [dt2.getFullYear(), dt2.getMonth()+1, dt2.getDate(), dt2.getHours(), dt2.getMinutes(), dt2.getSeconds()];
 	} else
-		var a2 = themerex_parse_date(dt2);
+		var a2 =  _parse_date(dt2);
 	dt2 = Date.UTC(a2[0], a2[1], a2[2], a2[3], a2[4], a2[5]);
 	var diff = Math.round((dt2 - dt1)/1000);
 	var days = Math.floor(diff / (24*3600));
@@ -344,12 +336,12 @@ function themerex_get_date_difference(dt1) {
 /* Colors functions
 ---------------------------------------------------------------- */
 
-function themerex_hex2rgb(hex) {
+function  _hex2rgb(hex) {
 	hex = parseInt(((hex.indexOf('#') > -1) ? hex.substring(1) : hex), 16);
 	return {r: hex >> 16, g: (hex & 0x00FF00) >> 8, b: (hex & 0x0000FF)};
 }
 
-function themerex_rgb2hex(color) {
+function  _rgb2hex(color) {
 	"use strict";
 	var aRGB;
 	color = color.replace(/\s/g,"").toLowerCase();
@@ -369,7 +361,7 @@ function themerex_rgb2hex(color) {
 	return (color.substr(0,1)!='#' ? '#' : '') + color;
 }
 
-function themerex_components2hex(r,g,b) {
+function  _components2hex(r,g,b) {
 	"use strict";
 	return '#'+
 		Number(r).toString(16).toUpperCase().replace(/^(.)$/,'0$1') +
@@ -377,9 +369,9 @@ function themerex_components2hex(r,g,b) {
 		Number(b).toString(16).toUpperCase().replace(/^(.)$/,'0$1');
 }
 
-function themerex_rgb2components(color) {
+function  _rgb2components(color) {
 	"use strict";
-	color = themerex_rgb2hex(color);
+	color =  _rgb2hex(color);
 	var matches = color.match(/^#?([\dabcdef]{2})([\dabcdef]{2})([\dabcdef]{2})$/i);
 	if (!matches) return false;
 	for (var i=1, rgb = new Array(3); i<=3; i++)
@@ -387,17 +379,17 @@ function themerex_rgb2components(color) {
 	return rgb;
 }
 
-function themerex_hex2hsb(hex) {
+function  _hex2hsb(hex) {
 	"use strict";
-	return themerex_rgb2hsb(themerex_hex2rgb(hex));
+	return  _rgb2hsb( _hex2rgb(hex));
 }
 
-function themerex_hsb2hex(hsb) {
-	var rgb = themerex_hsb2rgb(hsb);
-	return themerex_components2hex(rgb.r, rgb.g, rgb.b);
+function  _hsb2hex(hsb) {
+	var rgb =  _hsb2rgb(hsb);
+	return  _components2hex(rgb.r, rgb.g, rgb.b);
 }
 
-function themerex_rgb2hsb(rgb) {
+function  _rgb2hsb(rgb) {
 	"use strict";
 	var hsb = {};
 	hsb.b = Math.max(Math.max(rgb.r,rgb.g),rgb.b);
@@ -415,7 +407,7 @@ function themerex_rgb2hsb(rgb) {
 	return hsb;
 }
 
-function themerex_hsb2rgb(hsb) {
+function  _hsb2rgb(hsb) {
 	var rgb = {};
 	var h = Math.round(hsb.h);
 	var s = Math.round(hsb.s*255/100);
@@ -438,7 +430,7 @@ function themerex_hsb2rgb(hsb) {
 	return { r:Math.round(rgb.r), g:Math.round(rgb.g), b:Math.round(rgb.b) };
 }
 
-function themerex_color_picker(){
+function  _color_picker(){
 	"use strict";
 	var id = arguments[0] ? arguments[0] : "iColorPicker"+Math.round(Math.random()*1000);
 	var colors = arguments[1] ? arguments[1] : 
@@ -475,7 +467,7 @@ function themerex_color_picker(){
 		.addClass("iColorPickerTable")
 		.on('mouseover', 'thead td', function(){
 			"use strict";
-			var aaa = themerex_rgb2hex(jQuery(this).css('background-color'));
+			var aaa =  _rgb2hex(jQuery(this).css('background-color'));
 			jQuery('#'+id+'_colorPreview').css('background',aaa);
 			jQuery('#'+id+'_colorPreview input').val(aaa);
 		})
@@ -509,7 +501,7 @@ function themerex_color_picker(){
 			"use strict";
 			var fld  = jQuery('#'+id).data('field');
 			var func = jQuery('#'+id).data('func');
-			var aaa  = themerex_rgb2hex(jQuery(this).css('background-color'));
+			var aaa  =  _rgb2hex(jQuery(this).css('background-color'));
 			if (func!=null && func!='undefined') {
 				func(fld, aaa);
 			} else {
@@ -537,7 +529,7 @@ function themerex_color_picker(){
 				while (rgb[0]<0xF || rgb[1]<0xF || rgb[2]<0xF) {
 					if (i%18==0) out += (i>0 ? '</tr>' : '') + '<tr>';
 					i++;
-					out += '<td style="background-color:'+themerex_components2hex(rgb[0]*16+rgb[0],rgb[1]*16+rgb[1],rgb[2]*16+rgb[2])+'">&nbsp;</td>';
+					out += '<td style="background-color:'+ _components2hex(rgb[0]*16+rgb[0],rgb[1]*16+rgb[1],rgb[2]*16+rgb[2])+'">&nbsp;</td>';
 					rgb[2]+=3;
 					if (rgb[2]>0xF) {
 						rgb[1]+=3;
@@ -607,7 +599,7 @@ function themerex_color_picker(){
 	return id;
 }
 
-function themerex_color_picker_show(id, fld, func) { 
+function  _color_picker_show(id, fld, func) { 
 	"use strict";
 	if (id===null || id==='') {
 		id = jQuery('.iColorPickerTable').attr('id');
@@ -636,7 +628,7 @@ function themerex_color_picker_show(id, fld, func) {
 			'height':'100%'
 		})
 		.fadeIn(500);
-	var def = fld.val().substr(0, 1)=='#' ? fld.val() : themerex_rgb2hex(fld.css('backgroundColor'));
+	var def = fld.val().substr(0, 1)=='#' ? fld.val() :  _rgb2hex(fld.css('backgroundColor'));
 	jQuery('#'+id+'_colorPreview input,#'+id+'_colorOriginal input').val(def);
 	jQuery('#'+id+'_colorPreview,#'+id+'_colorOriginal').css('background',def);
 }
@@ -646,7 +638,7 @@ function themerex_color_picker_show(id, fld, func) {
 /* Cookies manipulations
 ---------------------------------------------------------------- */
 
-function themerex_get_cookie(name) {
+function  _get_cookie(name) {
 	"use strict";
 	var defa = arguments[1]!=undefined ? arguments[1] : null;
 	var start = document.cookie.indexOf(name + '=');
@@ -663,7 +655,7 @@ function themerex_get_cookie(name) {
 }
 
 
-function themerex_set_cookie(name, value, expires, path, domain, secure) {
+function  _set_cookie(name, value, expires, path, domain, secure) {
 	"use strict";
 	var expires = arguments[2]!=undefined ? arguments[2] : 0;
 	var path    = arguments[3]!=undefined ? arguments[3] : '/';
@@ -684,11 +676,11 @@ function themerex_set_cookie(name, value, expires, path, domain, secure) {
 }
 
 
-function themerex_del_cookie(name, path, domain) {
+function  _del_cookie(name, path, domain) {
 	"use strict";
 	var path   = arguments[1]!=undefined ? arguments[1] : '/';
 	var domain = arguments[2]!=undefined ? arguments[2] : '';
-	if (themerex_get_cookie(name))
+	if ( _get_cookie(name))
 		document.cookie = name + '=' + ((path) ? ';path=' + path : '')
 				+ ((domain) ? ';domain=' + domain : '')
 				+ ';expires=Thu, 01-Jan-1970 00:00:01 GMT';
@@ -699,13 +691,13 @@ function themerex_del_cookie(name, path, domain) {
 /* ListBox and ComboBox manipulations
 ---------------------------------------------------------------- */
 
-function themerex_clear_listbox(box) {
+function  _clear_listbox(box) {
 	"use strict";
 	for (var i=box.options.length-1; i>=0; i--)
 		box.options[i] = null;
 }
 
-function themerex_add_listbox_item(box, val, text) {
+function  _add_listbox_item(box, val, text) {
 	"use strict";
 	var item = new Option();
 	item.value = val;
@@ -713,7 +705,7 @@ function themerex_add_listbox_item(box, val, text) {
     box.options.add(item);
 }
 
-function themerex_del_listbox_item_by_value(box, val) {
+function  _del_listbox_item_by_value(box, val) {
 	"use strict";
 	for (var i=0; i<box.options.length; i++) {
 		if (box.options[i].value == val) {
@@ -723,7 +715,7 @@ function themerex_del_listbox_item_by_value(box, val) {
 	}
 }
 
-function themerex_del_listbox_item_by_text(box, txt) {
+function  _del_listbox_item_by_text(box, txt) {
 	"use strict";
 	for (var i=0; i<box.options.length; i++) {
 		if (box.options[i].text == txt) {
@@ -733,7 +725,7 @@ function themerex_del_listbox_item_by_text(box, txt) {
 	}
 }
 
-function themerex_find_listbox_item_by_value(box, val) {
+function  _find_listbox_item_by_value(box, val) {
 	"use strict";
 	var idx = -1;
 	for (var i=0; i<box.options.length; i++) {
@@ -745,7 +737,7 @@ function themerex_find_listbox_item_by_value(box, val) {
 	return idx;
 }
 
-function themerex_find_listbox_item_by_text(box, txt) {
+function  _find_listbox_item_by_text(box, txt) {
 	"use strict";
 	var idx = -1;
 	for (var i=0; i<box.options.length; i++) {
@@ -757,21 +749,21 @@ function themerex_find_listbox_item_by_text(box, txt) {
 	return idx;
 }
 
-function themerex_select_listbox_item_by_value(box, val) {
+function  _select_listbox_item_by_value(box, val) {
 	"use strict";
 	for (var i = 0; i < box.options.length; i++) {
 		box.options[i].selected = (val == box.options[i].value);
 	}
 }
 
-function themerex_select_listbox_item_by_text(box, txt) {
+function  _select_listbox_item_by_text(box, txt) {
 	"use strict";
 	for (var i = 0; i < box.options.length; i++) {
 		box.options[i].selected = (txt == box.options[i].text);
 	}
 }
 
-function themerex_get_listbox_values(box) {
+function  _get_listbox_values(box) {
 	"use strict";
 	var delim = arguments[1] ? arguments[1] : ',';
 	var str = '';
@@ -781,7 +773,7 @@ function themerex_get_listbox_values(box) {
 	return str;
 }
 
-function themerex_get_listbox_texts(box) {
+function  _get_listbox_texts(box) {
 	"use strict";
 	var delim = arguments[1] ? arguments[1] : ',';
 	var str = '';
@@ -791,7 +783,7 @@ function themerex_get_listbox_texts(box) {
 	return str;
 }
 
-function themerex_sort_listbox(box)  {
+function  _sort_listbox(box)  {
 	"use strict";
 	var temp_opts = new Array();
 	var temp = new Option();
@@ -812,7 +804,7 @@ function themerex_sort_listbox(box)  {
 	}
 }
 
-function themerex_get_listbox_selected_index(box) {
+function  _get_listbox_selected_index(box) {
 	"use strict";
 	for (var i = 0; i < box.options.length; i++) {
 		if (box.options[i].selected)
@@ -821,7 +813,7 @@ function themerex_get_listbox_selected_index(box) {
 	return -1;
 }
 
-function themerex_get_listbox_selected_value(box) {
+function  _get_listbox_selected_value(box) {
 	"use strict";
 	for (var i = 0; i < box.options.length; i++) {
 		if (box.options[i].selected) {
@@ -831,7 +823,7 @@ function themerex_get_listbox_selected_value(box) {
 	return null;
 }
 
-function themerex_get_listbox_selected_text(box) {
+function  _get_listbox_selected_text(box) {
 	"use strict";
 	for (var i = 0; i < box.options.length; i++) {
 		if (box.options[i].selected) {
@@ -841,7 +833,7 @@ function themerex_get_listbox_selected_text(box) {
 	return null;
 }
 
-function themerex_get_listbox_selected_option(box) {
+function  _get_listbox_selected_option(box) {
 	"use strict";
 	for (var i = 0; i < box.options.length; i++) {
 		if (box.options[i].selected) {
@@ -856,21 +848,21 @@ function themerex_get_listbox_selected_option(box) {
 /* Radio buttons manipulations
 ---------------------------------------------------------------- */
 
-function themerex_get_radio_value(radioGroupObj) {
+function  _get_radio_value(radioGroupObj) {
 	"use strict";
 	for (var i=0; i < radioGroupObj.length; i++)
 		if (radioGroupObj[i].checked) return radioGroupObj[i].value;
 	return null;
 }
 
-function themerex_set_radio_checked_by_num(radioGroupObj, num) {
+function  _set_radio_checked_by_num(radioGroupObj, num) {
 	"use strict";
 	for (var i=0; i < radioGroupObj.length; i++)
 		if (radioGroupObj[i].checked && i!=num) radioGroupObj[i].checked=false;
 		else if (i==num) radioGroupObj[i].checked=true;
 }
 
-function themerex_set_radio_checked_by_value(radioGroupObj, val) {
+function  _set_radio_checked_by_value(radioGroupObj, val) {
 	"use strict";
 	for (var i=0; i < radioGroupObj.length; i++)
 		if (radioGroupObj[i].checked && radioGroupObj[i].value!=val) radioGroupObj[i].checked=false;
@@ -884,7 +876,7 @@ function themerex_set_radio_checked_by_value(radioGroupObj, val) {
 
 /*
 // Usage example:
-var error = themerex_form_validate(jQuery(form_selector), {				// -------- Options ---------
+var error =  _form_validate(jQuery(form_selector), {				// -------- Options ---------
 	error_message_show: true,									// Display or not error message
 	error_message_time: 5000,									// Time to display error message
 	error_message_class: 'sc_infobox sc_infobox_style_error',	// Class, appended to error message block
@@ -921,7 +913,7 @@ var error = themerex_form_validate(jQuery(form_selector), {				// -------- Optio
 });
 */
 
-function themerex_form_validate(form, opt) {
+function  _form_validate(form, opt) {
 	"use strict";
 	var error_msg = '';
 	form.find(":input").each(function() {
@@ -986,7 +978,7 @@ function themerex_form_validate(form, opt) {
 ---------------------------------------------------------------- */
 
 // Animated scroll to selected id
-function themerex_document_animate_to(id) {
+function  _document_animate_to(id) {
 	if (id.indexOf('#')==-1) id = '#' + id;
 	var obj = jQuery(id).eq(0);
 	if (obj.length == 0) return;
@@ -997,7 +989,7 @@ function themerex_document_animate_to(id) {
 }
 
 // Change browser address without reload page
-function themerex_document_set_location(curLoc){
+function  _document_set_location(curLoc){
 	try {
 		history.pushState(null, null, curLoc);
 		return;
@@ -1006,15 +998,15 @@ function themerex_document_set_location(curLoc){
 }
 
 // Add hidden elements init functions after tab, accordion, toggles activate
-function themerex_add_hidden_elements_handler(key, handler) {
-	themerex_set_global_array('init_hidden_elements', key, handler);
+function  _add_hidden_elements_handler(key, handler) {
+	 _set_global_array('init_hidden_elements', key, handler);
 }
 
 // Init hidden elements after tab, accordion, toggles activate
-function themerex_init_hidden_elements(cont) {
-	if (THEMEREX_GLOBALS['init_hidden_elements']) {
-		for (key in THEMEREX_GLOBALS['init_hidden_elements']) {
-			THEMEREX_GLOBALS['init_hidden_elements'][key](cont);
+function  _init_hidden_elements(cont) {
+	if ( _GLOBALS['init_hidden_elements']) {
+		for (key in  _GLOBALS['init_hidden_elements']) {
+			 _GLOBALS['init_hidden_elements'][key](cont);
 		}
 	}
 }
@@ -1024,12 +1016,12 @@ function themerex_init_hidden_elements(cont) {
 /* Browsers detection
 ---------------------------------------------------------------- */
 
-function themerex_browser_is_mobile() {
+function  _browser_is_mobile() {
 	var check = false;
 	(function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
 	return check;
 }
-function themerex_browser_is_ios() {
+function  _browser_is_ios() {
 	return navigator.userAgent.match(/iPad|iPhone|iPod/i) != null;
 }
 
@@ -1038,7 +1030,7 @@ function themerex_browser_is_ios() {
 /* File functions
 ---------------------------------------------------------------- */
 
-function themerex_get_file_name(path) {
+function  _get_file_name(path) {
 	path = path.replace(/\\/g, '/');
 	var pos = path.lastIndexOf('/');
 	if (pos >= 0)
@@ -1046,7 +1038,7 @@ function themerex_get_file_name(path) {
 	return path;
 }
 
-function themerex_get_file_ext(path) {
+function  _get_file_ext(path) {
 	var pos = path.lastIndexOf('.');
 	path = pos >= 0 ? path.substr(pos+1) : '';
 	return path;
@@ -1058,7 +1050,7 @@ function themerex_get_file_ext(path) {
 ---------------------------------------------------------------- */
 
 // Return true, if all images in the specified container are loaded
-function themerex_check_images_complete(cont) {
+function  _check_images_complete(cont) {
 	var complete = true;
 	cont.find('img').each(function() {
 		if (!complete) return;

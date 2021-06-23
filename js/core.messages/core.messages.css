@@ -1,5 +1,5 @@
 /* Popups with messages */
-#themerex_modal_bg {
+# _modal_bg {
 	position:fixed;
 	left:0;
 	top:0;
@@ -9,7 +9,7 @@
 	display:none;
 	z-index:100000;
 }
-.themerex_message {
+. _message {
 	display:block;
 	position:absolute;
 	max-width:800px;
@@ -27,7 +27,7 @@
 	line-height:140%;
 	z-index:100001
 }
-.themerex_message .themerex_message_close {
+. _message . _message_close {
 	display:block;
 	position:absolute;
 	width:16px;
@@ -41,7 +41,7 @@
 	cursor:pointer;
 	color:#4c4c4c;
 }
-.themerex_message .themerex_message_icon {
+. _message . _message_icon {
 	float:left;
 	display:block;
 	width:35px;
@@ -55,85 +55,85 @@
 	font-weight:bold;
 	color:#c9c9c9;
 }
-.themerex_message .themerex_message_icon:before {
+. _message . _message_icon:before {
 	padding:0;
 	margin:0;
 }
-.themerex_message .themerex_message_header {
+. _message . _message_header {
 	color:#4c4c4c;
 	padding: 0;
 	font-size:18px;
 	font-weight:bold;
 }
-.themerex_message:not(.themerex_message_dialog) .themerex_message_body {
+. _message:not(. _message_dialog) . _message_body {
 	padding:12px 0 0 63px;
 }
 
 /* Warning popup */
-.themerex_message_warning {
+. _message_warning {
 	border-color:#d7a9b1;
 	background-color:#ffcdde;
 	color:#a63a4b;
 }
-.themerex_message_warning .themerex_message_close {
+. _message_warning . _message_close {
 	color:#a63a4b;
 }
-.themerex_message_warning .themerex_message_icon {
+. _message_warning . _message_icon {
 	border-color: #a63a4b;
 	color:#a63a4b;
 }
-.themerex_message_warning .themerex_message_icon {
+. _message_warning . _message_icon {
 	line-height:34px;
 }
-.themerex_message_warning .themerex_message_header {
+. _message_warning . _message_header {
 	color:#a63a4b;
 }
 /* Success popup */
-.themerex_message_success {
+. _message_success {
 	border-color:#b3e7a8;
 	background-color:#d8ffd0;
 	color:#517d48;
 }
-.themerex_message_success .themerex_message_close {
+. _message_success . _message_close {
 	color:#517d48;
 }
-.themerex_message_success .themerex_message_icon {
+. _message_success . _message_icon {
 	border-color: #517d48;
 	color:#517d48;
 }
-.themerex_message_success .themerex_message_icon {
+. _message_success . _message_icon {
 	line-height:34px;
 }
-.themerex_message_success .themerex_message_header {
+. _message_success . _message_header {
 	color:#517d48;
 }
 /* Info popup */
-.themerex_message_info {
+. _message_info {
 	border-color:#9ecade;
 	background-color:#ebf7fe;
 	color:#4cb2e1;
 }
-.themerex_message_info .themerex_message_close {
+. _message_info . _message_close {
 	color:#4cb2e1;
 }
-.themerex_message_info .themerex_message_icon {
+. _message_info . _message_icon {
 	border-color: #4cb2e1;
 	color:#4cb2e1;
 }
-.themerex_message_info .themerex_message_icon {
+. _message_info . _message_icon {
 	line-height:34px;
 }
-.themerex_message_info .themerex_message_header {
+. _message_info . _message_header {
 	color:#4cb2e1;
 }
 /* Dialog popup */
-.themerex_message_dialog .themerex_message_icon {
+. _message_dialog . _message_icon {
 	line-height:36px;
 }
-.themerex_message_dialog .themerex_message_buttons {
+. _message_dialog . _message_buttons {
 	margin-top:20px;
 }
-.themerex_message_dialog .themerex_message_button {
+. _message_dialog . _message_button {
 	display:inline-block;
 	padding:0 12px;
 	margin-right:6px;
@@ -147,6 +147,6 @@
 	text-align:center;
 	font-weight:bold;
 }
-.themerex_message_dialog .themerex_message_button:hover {
+. _message_dialog . _message_button:hover {
 	background-color:#4cb2e1;
 }

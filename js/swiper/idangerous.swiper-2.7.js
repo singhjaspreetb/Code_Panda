@@ -143,7 +143,7 @@ var Swiper = function (selector, params) {
         keyboardControl: false,
         mousewheelControl : false,
         mousewheelControlForceToAxis : false,
-        mousewheelAccelerator: 4,		// Accelerator for FireFox 4+ by ThemeREX
+        mousewheelAccelerator: 4,		// Accelerator for FireFox 4+ by  
         useCSS3Transforms : true,
         // Autoplay
         autoplay: false,
@@ -1170,7 +1170,7 @@ var Swiper = function (selector, params) {
             else {
                 delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? - e.deltaX : - e.deltaY;
             }
-            // Accelerate mouse wheel by ThemeREX
+            // Accelerate mouse wheel by  
             delta *= params.mousewheelAccelerator;
         }
 

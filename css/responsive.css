@@ -2,8 +2,6 @@
 
 /* Responsive styles
 -------------------------------------------------------------- */
-
-
 /*
 Apple iPhone 5, 5S & 5C 
 Apple iPod Touch (5th generation)
@@ -1197,8 +1195,8 @@ Very common low res
 		width: 270px;
 	}
 	
-	/* Themerex message */
-	.themerex_message{
+	/*   message */
+	. _message{
 		left: 64%;
 	}
 	

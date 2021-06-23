@@ -1553,7 +1553,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 
-/* Widget: ThemeREX Advertisement */
+/* Widget:   Advertisement */
 .widget_area .widget_advert .image_wrap {
 	-webkit-border-radius: 6px;
 	   -moz-border-radius: 6px;
@@ -1561,7 +1561,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 
-/* Widget: ThemeREX Flickr */
+/* Widget:   Flickr */
 .widget_area .widget_flickr .flickr_badge_image {
 	-webkit-border-radius: 6px;
 	   -moz-border-radius: 6px;

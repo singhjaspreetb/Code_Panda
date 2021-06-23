@@ -1,37 +1,37 @@
 /* global jQuery:false */
-/* global THEMEREX_GLOBALS:false */
+/* global  _GLOBALS:false */
 
 jQuery(document).ready(function() {
 	"use strict";
-	THEMEREX_GLOBALS['theme_init_counter'] = 0;
-	themerex_init_actions();
+	 _GLOBALS['theme_init_counter'] = 0;
+	 _init_actions();
 });
 
 
 
 // Theme init actions
-function themerex_init_actions() {
+function  _init_actions() {
 	"use strict";
 
-	if (THEMEREX_GLOBALS['vc_edit_mode'] && jQuery('.vc_empty-placeholder').length==0 && THEMEREX_GLOBALS['theme_init_counter']++ < 30) {
-		setTimeout(themerex_init_actions, 200);
+	if ( _GLOBALS['vc_edit_mode'] && jQuery('.vc_empty-placeholder').length==0 &&  _GLOBALS['theme_init_counter']++ < 30) {
+		setTimeout( _init_actions, 200);
 		return;
 	}
 
-	themerex_ready_actions();
-	themerex_resize_actions();
-	themerex_scroll_actions();
+	 _ready_actions();
+	 _resize_actions();
+	 _scroll_actions();
 
 	// Resize handlers
 	jQuery(window).resize(function() {
 		"use strict";
-		themerex_resize_actions();
+		 _resize_actions();
 	});
 
 	// Scroll handlers
 	jQuery(window).scroll(function() {
 		"use strict";
-		themerex_scroll_actions();
+		 _scroll_actions();
 	});
 }
 
@@ -39,12 +39,12 @@ function themerex_init_actions() {
 
 // Theme first load actions
 //==============================================
-function themerex_ready_actions() {
+function  _ready_actions() {
 	"use strict";
 
 	// Call skin specific action (if exists)
     //----------------------------------------------
-	if (window.themerex_skin_ready_actions) themerex_skin_ready_actions();
+	if (window. _skin_ready_actions)  _skin_ready_actions();
 
 
 	// Widgets decoration
@@ -75,9 +75,9 @@ function themerex_ready_actions() {
 		var m = jQuery(this).data('month');
 		var y = jQuery(this).data('year');
 		var pt = jQuery(this).data('type');
-		jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+		jQuery.post( _GLOBALS['ajax_url'], {
 			action: 'calendar_change_month',
-			nonce: THEMEREX_GLOBALS['ajax_nonce'],
+			nonce:  _GLOBALS['ajax_nonce'],
 			month: m,
 			year: y,
 			post_type: pt
@@ -139,18 +139,18 @@ function themerex_ready_actions() {
 	});
 	
 	// Init superfish menus
-	themerex_init_sfmenu('.menu_main_wrap ul#menu_main, .menu_user_wrap ul#menu_user');
+	 _init_sfmenu('.menu_main_wrap ul#menu_main, .menu_user_wrap ul#menu_user');
 
 	// Slide effect for main menu
-	if (THEMEREX_GLOBALS['menu_slider']) {
+	if ( _GLOBALS['menu_slider']) {
 		jQuery('#menu_main').spasticNav({
-			color: THEMEREX_GLOBALS['menu_color']
+			color:  _GLOBALS['menu_color']
 		});
 	}
 
 	// Show table of contents for the current page
-	if (THEMEREX_GLOBALS['toc_menu'] != 'no') {
-		themerex_build_page_toc();
+	if ( _GLOBALS['toc_menu'] != 'no') {
+		 _build_page_toc();
 	}
 
 	// One page mode for menu links (scroll to anchor)
@@ -167,8 +167,8 @@ function themerex_ready_actions() {
 			var now = pos==0;
 			if (!now) now = loc == href.substring(0, pos);
 			if (now) {
-				themerex_document_animate_to(href.substr(pos));
-				themerex_document_set_location(pos==0 ? loc + href : href);
+				 _document_animate_to(href.substr(pos));
+				 _document_set_location(pos==0 ? loc + href : href);
 				e.preventDefault();
 				return false;
 			}
@@ -177,7 +177,7 @@ function themerex_ready_actions() {
 	
 	
 	// Store height of the top panel
-	THEMEREX_GLOBALS['top_panel_height'] = 0;	//Math.max(0, jQuery('.top_panel_wrap').height());
+	 _GLOBALS['top_panel_height'] = 0;	//Math.max(0, jQuery('.top_panel_wrap').height());
 
 
 	// Pagination
@@ -187,7 +187,7 @@ function themerex_ready_actions() {
 	jQuery('.pager_cur').click(function(e) {
 		"use strict";
 		jQuery('.pager_slider').slideDown(300, function() {
-			themerex_init_shortcodes(jQuery('.pager_slider').eq(0));
+			 _init_shortcodes(jQuery('.pager_slider').eq(0));
 		});
 		e.preventDefault();
 		return false;
@@ -197,38 +197,38 @@ function themerex_ready_actions() {
 	// View More button
 	jQuery('#viewmore_link').click(function(e) {
 		"use strict";
-		if (!THEMEREX_GLOBALS['viewmore_busy'] && !jQuery(this).hasClass('viewmore_empty')) {
+		if (! _GLOBALS['viewmore_busy'] && !jQuery(this).hasClass('viewmore_empty')) {
 			jQuery(this).parent().addClass('loading');
-			THEMEREX_GLOBALS['viewmore_busy'] = true;
-			jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+			 _GLOBALS['viewmore_busy'] = true;
+			jQuery.post( _GLOBALS['ajax_url'], {
 				action: 'view_more_posts',
-				nonce: THEMEREX_GLOBALS['ajax_nonce'],
-				page: THEMEREX_GLOBALS['viewmore_page']+1,
-				data: THEMEREX_GLOBALS['viewmore_data'],
-				vars: THEMEREX_GLOBALS['viewmore_vars']
+				nonce:  _GLOBALS['ajax_nonce'],
+				page:  _GLOBALS['viewmore_page']+1,
+				data:  _GLOBALS['viewmore_data'],
+				vars:  _GLOBALS['viewmore_vars']
 			}).done(function(response) {
 				"use strict";
 				var rez = JSON.parse(response);
 				jQuery('#viewmore_link').parent().removeClass('loading');
-				THEMEREX_GLOBALS['viewmore_busy'] = false;
+				 _GLOBALS['viewmore_busy'] = false;
 				if (rez.error === '') {
 					var posts_container = jQuery('.content').eq(0);
 					if (posts_container.find('.isotope_wrap').length > 0) posts_container = posts_container.find('.isotope_wrap').eq(0);
 					if (posts_container.hasClass('isotope_wrap')) {
 						posts_container.data('last-width', 0).append(rez.data);
-						THEMEREX_GLOBALS['isotope_init_counter'] = 0;
-						themerex_init_appended_isotope(posts_container, rez.filters);
+						 _GLOBALS['isotope_init_counter'] = 0;
+						 _init_appended_isotope(posts_container, rez.filters);
 					} else
 						jQuery('#viewmore').before(rez.data);
 
-					THEMEREX_GLOBALS['viewmore_page']++;
+					 _GLOBALS['viewmore_page']++;
 					if (rez.no_more_data==1) {
 						jQuery('#viewmore_link').addClass('viewmore_empty').parent().hide();
 					}
 
-					themerex_init_post_formats();
-					themerex_init_shortcodes(posts_container);
-					themerex_scroll_actions();
+					 _init_post_formats();
+					 _init_shortcodes(posts_container);
+					 _scroll_actions();
 				}
 			});
 		}
@@ -244,7 +244,7 @@ function themerex_ready_actions() {
 	jQuery('.woocommerce .mode_buttons a,.woocommerce-page .mode_buttons a').click(function(e) {
 		"use strict";
 		var mode = jQuery(this).hasClass('woocommerce_thumbs') ? 'thumbs' : 'list';
-		jQuery.cookie('themerex_shop_mode', mode, {expires: 365, path: '/'});
+		jQuery.cookie(' _shop_mode', mode, {expires: 365, path: '/'});
 		jQuery(this).siblings('input').val(mode).parents('form').get(0).submit();
 		e.preventDefault();
 		return false;
@@ -263,8 +263,8 @@ function themerex_ready_actions() {
 	jQuery('.menu_user_wrap .popup_link').addClass('inited').click(function(e){
 		var popup = jQuery(jQuery(this).attr('href'));
 		if (popup.length === 1) {
-			themerex_hide_popup(jQuery(popup.hasClass('popup_login') ? '.popup_registration' : '.popup_login' ));
-			themerex_toggle_popup(popup);
+			 _hide_popup(jQuery(popup.hasClass('popup_login') ? '.popup_registration' : '.popup_login' ));
+			 _toggle_popup(popup);
 		}
 		e.preventDefault();
 		return false;
@@ -272,7 +272,7 @@ function themerex_ready_actions() {
 	jQuery('.popup_wrap .popup_close').click(function(e){
 		var popup = jQuery(this).parent();
 		if (popup.length === 1) {
-			themerex_hide_popup(popup);
+			 _hide_popup(popup);
 		}
 		e.preventDefault();
 		return false;
@@ -285,7 +285,7 @@ function themerex_ready_actions() {
 	// Login form
 	jQuery('.popup_form.login_form').submit(function(e){
 		"use strict";
-		var rez = themerex_login_validate(jQuery(this));
+		var rez =  _login_validate(jQuery(this));
 		if (!rez)
 			e.preventDefault();
 		return rez;
@@ -294,7 +294,7 @@ function themerex_ready_actions() {
 	// Registration form
 	jQuery('.popup_form.registration_form').submit(function(e){
 		"use strict";
-		var rez = themerex_registration_validate(jQuery(this));
+		var rez =  _registration_validate(jQuery(this));
 		if (!rez)
 			e.preventDefault();
 		return rez;
@@ -303,7 +303,7 @@ function themerex_ready_actions() {
 	// Comment form
 	jQuery("form#commentform").submit(function(e) {
 		"use strict";
-		var rez = themerex_comments_validate(jQuery(this));
+		var rez =  _comments_validate(jQuery(this));
 		if (!rez)
 			e.preventDefault();
 		return rez;
@@ -319,7 +319,7 @@ function themerex_ready_actions() {
 		"use strict";
 		var title = window.document.title.split('|')[0];
 		var url = window.location.href;
-		var list = jQuery.cookie('themerex_bookmarks');
+		var list = jQuery.cookie(' _bookmarks');
 		var exists = false;
 		if (list) {
 			list = JSON.parse(list);
@@ -332,18 +332,18 @@ function themerex_ready_actions() {
 		} else
 			list = new Array();
 		if (!exists) {
-			var message_popup = themerex_message_dialog('<label for="bookmark_title">'+THEMEREX_GLOBALS['strings']['bookmark_title']+'</label><br><input type="text" id="bookmark_title" name="bookmark_title" value="'+title+'">', THEMEREX_GLOBALS['strings']['bookmark_add'], null,
+			var message_popup =  _message_dialog('<label for="bookmark_title">'+ _GLOBALS['strings']['bookmark_title']+'</label><br><input type="text" id="bookmark_title" name="bookmark_title" value="'+title+'">',  _GLOBALS['strings']['bookmark_add'], null,
 				function(btn, popup) {
 					"use strict";
 					if (btn != 1) return;
 					title = message_popup.find('#bookmark_title').val();
 					list.push({title: title, url: url});
-					jQuery('.bookmarks_list').append('<li><a href="'+url+'" class="bookmarks_item">'+title+'<span class="bookmarks_delete icon-cancel-1" title="'+THEMEREX_GLOBALS['strings']['bookmark_del']+'"></span></a></li>');
-					jQuery.cookie('themerex_bookmarks', JSON.stringify(list), {expires: 365, path: '/'});
-					setTimeout(function () {themerex_message_success(THEMEREX_GLOBALS['strings']['bookmark_added'], THEMEREX_GLOBALS['strings']['bookmark_add']);}, THEMEREX_GLOBALS['message_timeout']/4);
+					jQuery('.bookmarks_list').append('<li><a href="'+url+'" class="bookmarks_item">'+title+'<span class="bookmarks_delete icon-cancel-1" title="'+ _GLOBALS['strings']['bookmark_del']+'"></span></a></li>');
+					jQuery.cookie(' _bookmarks', JSON.stringify(list), {expires: 365, path: '/'});
+					setTimeout(function () { _message_success( _GLOBALS['strings']['bookmark_added'],  _GLOBALS['strings']['bookmark_add']);},  _GLOBALS['message_timeout']/4);
 				});
 		} else
-			themerex_message_warning(THEMEREX_GLOBALS['strings']['bookmark_exists'], THEMEREX_GLOBALS['strings']['bookmark_add']);
+			 _message_warning( _GLOBALS['strings']['bookmark_exists'],  _GLOBALS['strings']['bookmark_add']);
 		e.preventDefault();
 		return false;
 	});
@@ -352,11 +352,11 @@ function themerex_ready_actions() {
 	jQuery('.bookmarks_list').on('click', '.bookmarks_delete', function(e) {
 		"use strict";
 		var idx = jQuery(this).parent().index();
-		var list = jQuery.cookie('themerex_bookmarks');
+		var list = jQuery.cookie(' _bookmarks');
 		if (list) {
 			list = JSON.parse(list);
 			list.splice(idx, 1);
-			jQuery.cookie('themerex_bookmarks', JSON.stringify(list), {expires: 365, path: '/'});
+			jQuery.cookie(' _bookmarks', JSON.stringify(list), {expires: 365, path: '/'});
 		}
 		jQuery(this).parent().remove();
 		e.preventDefault();
@@ -379,16 +379,16 @@ function themerex_ready_actions() {
 	});
 
     // Show system message
-	themerex_show_system_message();
+	 _show_system_message();
 
 	// Init post format specific scripts
-	themerex_init_post_formats();
+	 _init_post_formats();
 
 	// Init shortcodes scripts
-	themerex_init_shortcodes(jQuery('body').eq(0));
+	 _init_shortcodes(jQuery('body').eq(0));
 
 	// Init hidden elements (if exists)
-	if (window.themerex_init_hidden_elements) themerex_init_hidden_elements(jQuery('body').eq(0));
+	if (window. _init_hidden_elements)  _init_hidden_elements(jQuery('body').eq(0));
 	
 } //end ready
 
@@ -399,42 +399,42 @@ function themerex_ready_actions() {
 //==============================================
 
 // Do actions when page scrolled
-function themerex_scroll_actions() {
+function  _scroll_actions() {
 	"use strict";
 
 	var scroll_offset = jQuery(window).scrollTop();
 	var scroll_to_top_button = jQuery('.scroll_to_top');
 	var adminbar_height = Math.max(0, jQuery('#wpadminbar').height());
 
-	if (THEMEREX_GLOBALS['top_panel_height'] == 0)	THEMEREX_GLOBALS['top_panel_height'] = jQuery('.top_panel_wrap').height();
+	if ( _GLOBALS['top_panel_height'] == 0)	 _GLOBALS['top_panel_height'] = jQuery('.top_panel_wrap').height();
 
 	// Call skin specific action (if exists)
     //----------------------------------------------
-	if (window.themerex_skin_scroll_actions) themerex_skin_scroll_actions();
+	if (window. _skin_scroll_actions)  _skin_scroll_actions();
 
 
 	// Scroll to top button show/hide
-	if (scroll_offset > THEMEREX_GLOBALS['top_panel_height'])
+	if (scroll_offset >  _GLOBALS['top_panel_height'])
 		scroll_to_top_button.addClass('show');
 	else
 		scroll_to_top_button.removeClass('show');
 	
 	// Fix/unfix top panel
-	if (!jQuery('body').hasClass('responsive_menu') && THEMEREX_GLOBALS['menu_fixed']) {
+	if (!jQuery('body').hasClass('responsive_menu') &&  _GLOBALS['menu_fixed']) {
 		var slider_height = 0;
 		if (jQuery('.top_panel_below .slider_wrap').length > 0) {
 			slider_height = jQuery('.top_panel_below .slider_wrap').height();
 			if (slider_height < 10) {
-				slider_height = jQuery('.slider_wrap').hasClass('.slider_fullscreen') ? jQuery(window).height() : THEMEREX_GLOBALS['slider_height'];
+				slider_height = jQuery('.slider_wrap').hasClass('.slider_fullscreen') ? jQuery(window).height() :  _GLOBALS['slider_height'];
 			}
 		}
-		if (scroll_offset <= slider_height + THEMEREX_GLOBALS['top_panel_height']) {
+		if (scroll_offset <= slider_height +  _GLOBALS['top_panel_height']) {
 			if (jQuery('body').hasClass('top_panel_fixed')) {
 				jQuery('body').removeClass('top_panel_fixed');
 			}
-		} else if (scroll_offset > slider_height + THEMEREX_GLOBALS['top_panel_height']) {
+		} else if (scroll_offset > slider_height +  _GLOBALS['top_panel_height']) {
 			if (!jQuery('body').hasClass('top_panel_fixed')) {
-				jQuery('.top_panel_fixed_wrap').height(THEMEREX_GLOBALS['top_panel_height']);
+				jQuery('.top_panel_fixed_wrap').height( _GLOBALS['top_panel_height']);
 				jQuery('.top_panel_wrap').css('marginTop', '-150px').animate({'marginTop': 0}, 500);
 				jQuery('body').addClass('top_panel_fixed');
 			}
@@ -456,27 +456,27 @@ function themerex_scroll_actions() {
 		var off = jQuery(id).offset().top;
 		var id_next  = jQuery(this).next().find('a').attr('href');
 		var off_next = id_next ? jQuery(id_next).offset().top : 1000000;
-		if (off < scroll_offset + jQuery(window).height()*0.8 && scroll_offset + THEMEREX_GLOBALS['top_panel_height'] < off_next)
+		if (off < scroll_offset + jQuery(window).height()*0.8 && scroll_offset +  _GLOBALS['top_panel_height'] < off_next)
 			jQuery(this).addClass('current');
 		else
 			jQuery(this).removeClass('current');
 	});
 	
 	// Infinite pagination
-	themerex_infinite_scroll()
+	 _infinite_scroll()
 	
 	// Parallax scroll
-	themerex_parallax_scroll();
+	 _parallax_scroll();
 	
 	// Scroll actions for shortcodes
-	themerex_animation_shortcodes();
+	 _animation_shortcodes();
 }
 
 
 // Infinite Scroll
-function themerex_infinite_scroll() {
+function  _infinite_scroll() {
 	"use strict";
-	if (THEMEREX_GLOBALS['viewmore_busy']) return;
+	if ( _GLOBALS['viewmore_busy']) return;
 	var infinite = jQuery('#viewmore.pagination_infinite');
 	if (infinite.length > 0) {
 		var viewmore = infinite.find('#viewmore_link:not(.viewmore_empty)');
@@ -489,7 +489,7 @@ function themerex_infinite_scroll() {
 }
 
 // Parallax scroll
-function themerex_parallax_scroll(){
+function  _parallax_scroll(){
 	jQuery('.sc_parallax').each(function(){
 		var windowHeight = jQuery(window).height();
 		var scrollTops = jQuery(window).scrollTop();
@@ -513,22 +513,22 @@ function themerex_parallax_scroll(){
 //==============================================
 
 // Do actions when page scrolled
-function themerex_resize_actions() {
+function  _resize_actions() {
 	"use strict";
 
 	// Call skin specific action (if exists)
     //----------------------------------------------
-	if (window.themerex_skin_resize_actions) themerex_skin_resize_actions();
-	themerex_responsive_menu();
-	themerex_video_dimensions();
-	themerex_resize_video_background();
-	themerex_resize_fullscreen_slider();
+	if (window. _skin_resize_actions)  _skin_resize_actions();
+	 _responsive_menu();
+	 _video_dimensions();
+	 _resize_video_background();
+	 _resize_fullscreen_slider();
 }
 
 
 // Check window size and do responsive menu
-function themerex_responsive_menu() {
-	if (themerex_is_responsive_need(THEMEREX_GLOBALS['menu_responsive'])) {
+function  _responsive_menu() {
+	if ( _is_responsive_need( _GLOBALS['menu_responsive'])) {
 		if (!jQuery('body').hasClass('responsive_menu')) {
 			jQuery('body').removeClass('top_panel_fixed').addClass('responsive_menu');
 			if (jQuery('body').hasClass('menu_relayout'))
@@ -541,18 +541,18 @@ function themerex_responsive_menu() {
 		if (jQuery('body').hasClass('responsive_menu')) {
 			jQuery('body').removeClass('responsive_menu');
 			jQuery('.menu_main_responsive').hide();
-			themerex_init_sfmenu('ul.menu_main_nav');
+			 _init_sfmenu('ul.menu_main_nav');
 			jQuery('.menu_main_nav_area').show();
 		}
-		if (themerex_is_responsive_need(THEMEREX_GLOBALS['menu_relayout'])) {
+		if ( _is_responsive_need( _GLOBALS['menu_relayout'])) {
 			if (jQuery('body').hasClass('menu_right')) {
 				jQuery('body').removeClass('menu_right').addClass('menu_relayout menu_left');
-				//THEMEREX_GLOBALS['top_panel_height'] = Math.max(0, jQuery('.top_panel_wrap').height());
+				// _GLOBALS['top_panel_height'] = Math.max(0, jQuery('.top_panel_wrap').height());
 			}
 		} else {
 			if (jQuery('body').hasClass('menu_relayout')) {
 				jQuery('body').removeClass('menu_relayout menu_left').addClass('menu_right');
-				//THEMEREX_GLOBALS['top_panel_height'] = Math.max(0, jQuery('.top_panel_wrap').height());
+				// _GLOBALS['top_panel_height'] = Math.max(0, jQuery('.top_panel_wrap').height());
 			}
 		}
 	}
@@ -561,7 +561,7 @@ function themerex_responsive_menu() {
 
 
 // Check if responsive menu need
-function themerex_is_responsive_need(max_width) {
+function  _is_responsive_need(max_width) {
 	"use strict";
 	var rez = false;
 	if (max_width > 0) {
@@ -577,7 +577,7 @@ function themerex_is_responsive_need(max_width) {
 
 
 // Fit video frames to document width
-function themerex_video_dimensions() {
+function  _video_dimensions() {
 	jQuery('.sc_video_frame').each(function() {
 		"use strict";
 		var frame  = jQuery(this).eq(0);
@@ -624,7 +624,7 @@ function themerex_video_dimensions() {
 			h_real = Math.round(percent ? w_real/ratio : w_real/w_attr*h_attr);
 		if (parseInt(video.attr('data-last-width'))==w_real) return;
 		if (mejs_cont.length > 0 && mejs) {
-			themerex_set_mejs_player_dimensions(video, w_real, h_real);
+			 _set_mejs_player_dimensions(video, w_real, h_real);
 		}
 		if (percent) {
 			video.height(h_real);
@@ -665,7 +665,7 @@ function themerex_video_dimensions() {
 		var t = Math.round((h1-h)/2);
 		if (parseInt(video.attr('data-last-width'))==w1) return;
 		if (mejs_cont.length > 0) {
-			themerex_set_mejs_player_dimensions(video, w1, h1);
+			 _set_mejs_player_dimensions(video, w1, h1);
 			mejs_cont.css({'left': -l+'px', 'top': -t+'px'});
 		} else
 			video.css({'left': -l+'px', 'top': -t+'px'});
@@ -698,12 +698,12 @@ function themerex_video_dimensions() {
 }
 
 // Resize fullscreen video background
-function themerex_resize_video_background() {
+function  _resize_video_background() {
 	var bg = jQuery('.video_bg');
 	if (bg.length < 1) 
 		return;
-	if (THEMEREX_GLOBALS['media_elements_enabled'] && bg.find('.mejs-video').length == 0)  {
-		setTimeout(themerex_resize_video_background, 100);
+	if ( _GLOBALS['media_elements_enabled'] && bg.find('.mejs-video').length == 0)  {
+		setTimeout( _resize_video_background, 100);
 		return;
 	}
 	var video = bg.find('video');
@@ -724,7 +724,7 @@ function themerex_resize_video_background() {
 	var l = Math.round((w1-w)/2);
 	var t = Math.round((h1-h)/2);
 	if (bg.find('.mejs-container').length > 0) {
-		themerex_set_mejs_player_dimensions(bg.find('video'), w1, h1);
+		 _set_mejs_player_dimensions(bg.find('video'), w1, h1);
 		bg.find('.mejs-container').css({'left': -l+'px', 'top': -t+'px'});
 	} else
 		bg.find('video').css({'left': -l+'px', 'top': -t+'px'});
@@ -732,7 +732,7 @@ function themerex_resize_video_background() {
 }
 
 // Set Media Elements player dimensions
-function themerex_set_mejs_player_dimensions(video, w, h) {
+function  _set_mejs_player_dimensions(video, w, h) {
 	if (mejs) {
 		for (var pl in mejs.players) {
 			if (mejs.players[pl].media.src == video.attr('src')) {
@@ -749,7 +749,7 @@ function themerex_set_mejs_player_dimensions(video, w, h) {
 }
 
 // Resize Fullscreen Slider
-function themerex_resize_fullscreen_slider() {
+function  _resize_fullscreen_slider() {
 	var slider_wrap = jQuery('.slider_wrap.slider_fullscreen');
 	if (slider_wrap.length < 1) 
 		return;
@@ -768,9 +768,9 @@ function themerex_resize_fullscreen_slider() {
 //==============================================
 
 // Init Superfish menu
-function themerex_init_sfmenu(selector) {
+function  _init_sfmenu(selector) {
 	jQuery(selector).show().each(function() {
-		if (themerex_is_responsive_need() && jQuery(this).attr('id')=='menu_main') return;
+		if ( _is_responsive_need() && jQuery(this).attr('id')=='menu_main') return;
 		jQuery(this).addClass('inited').superfish({
 			delay: 500,
 			animation: {
@@ -779,8 +779,8 @@ function themerex_init_sfmenu(selector) {
 			animationOut: {
 				opacity: 'hide'
 			},
-			speed: 		THEMEREX_GLOBALS['css_animation'] ? 500 : (THEMEREX_GLOBALS['menu_slider'] ? 300 : 200),
-			speedOut:	THEMEREX_GLOBALS['css_animation'] ? 500 : (THEMEREX_GLOBALS['menu_slider'] ? 300 : 200),
+			speed: 		 _GLOBALS['css_animation'] ? 500 : ( _GLOBALS['menu_slider'] ? 300 : 200),
+			speedOut:	 _GLOBALS['css_animation'] ? 500 : ( _GLOBALS['menu_slider'] ? 300 : 200),
 			autoArrows: false,
 			dropShadows: false,
 			onBeforeShow: function(ul) {
@@ -794,15 +794,15 @@ function themerex_init_sfmenu(selector) {
 					else
 						jQuery(this).removeClass('submenu_left');
 				}
-				if (THEMEREX_GLOBALS['css_animation']) {
-					jQuery(this).removeClass('animated fast '+THEMEREX_GLOBALS['menu_animation_out']);
-					jQuery(this).addClass('animated fast '+THEMEREX_GLOBALS['menu_animation_in']);
+				if ( _GLOBALS['css_animation']) {
+					jQuery(this).removeClass('animated fast '+ _GLOBALS['menu_animation_out']);
+					jQuery(this).addClass('animated fast '+ _GLOBALS['menu_animation_in']);
 				}
 			},
 			onBeforeHide: function(ul) {
-				if (THEMEREX_GLOBALS['css_animation']) {
-					jQuery(this).removeClass('animated fast '+THEMEREX_GLOBALS['menu_animation_in']);
-					jQuery(this).addClass('animated fast '+THEMEREX_GLOBALS['menu_animation_out']);
+				if ( _GLOBALS['css_animation']) {
+					jQuery(this).removeClass('animated fast '+ _GLOBALS['menu_animation_in']);
+					jQuery(this).addClass('animated fast '+ _GLOBALS['menu_animation_out']);
 				}
 			}
 		});
@@ -811,7 +811,7 @@ function themerex_init_sfmenu(selector) {
 
 
 // Build page TOC from the tag's id
-function themerex_build_page_toc() {
+function  _build_page_toc() {
 	"use strict";
 	var toc = '', toc_count = 0;
 	jQuery('[id^="toc_"],.sc_anchor').each(function(idx) {
@@ -830,11 +830,11 @@ function themerex_build_page_toc() {
 			+'<a href="'+(url ? url : '#'+id)+'" class="toc_icon'+(title ? ' with_title' : '')+' '+icon+'">'+(title ? '<span class="toc_title">'+title+'</span>' : '')+'</a>'
 			+'</div>';
 	});
-	if (toc_count > (THEMEREX_GLOBALS['toc_menu_home'] ? 1 : 0) + (THEMEREX_GLOBALS['toc_menu_top'] ? 1 : 0)) {
+	if (toc_count > ( _GLOBALS['toc_menu_home'] ? 1 : 0) + ( _GLOBALS['toc_menu_top'] ? 1 : 0)) {
 		if (jQuery('#toc').length > 0)
 			jQuery('#toc .toc_inner').html(toc);
 		else
-			jQuery('body').append('<div id="toc" class="toc_'+THEMEREX_GLOBALS['toc_menu']+'"><div class="toc_inner">'+toc+'</div></div>');
+			jQuery('body').append('<div id="toc" class="toc_'+ _GLOBALS['toc_menu']+'"><div class="toc_inner">'+toc+'</div></div>');
 	}
 }
 
@@ -845,7 +845,7 @@ function themerex_build_page_toc() {
 //=====================================================
 
 // First init isotope containers
-function themerex_init_isotope() {
+function  _init_isotope() {
 	"use strict";
 
 	var all_images_complete = true;
@@ -853,11 +853,11 @@ function themerex_init_isotope() {
 	// Check if all images in isotope wrapper are loaded
 	jQuery('.isotope_wrap:not(.inited)').each(function () {
 		"use strict";
-		all_images_complete = all_images_complete && themerex_check_images_complete(jQuery(this));
+		all_images_complete = all_images_complete &&  _check_images_complete(jQuery(this));
 	});
 	// Wait for images loading
-	if (!all_images_complete && THEMEREX_GLOBALS['isotope_init_counter']++ < 30) {
-		setTimeout(themerex_init_isotope, 200);
+	if (!all_images_complete &&  _GLOBALS['isotope_init_counter']++ < 30) {
+		setTimeout( _init_isotope, 200);
 		return;
 	}
 
@@ -888,7 +888,7 @@ function themerex_init_isotope() {
 		var isotope_container = jQuery(this);
 
 		// Init shortcodes
-		themerex_init_shortcodes(isotope_container);
+		 _init_shortcodes(isotope_container);
 
 		// If in scroll container - no init isotope
 		if (isotope_container.parents('.sc_scroll').length > 0) {
@@ -917,13 +917,13 @@ function themerex_init_isotope() {
 	});		
 }
 
-function themerex_init_appended_isotope(posts_container, filters) {
+function  _init_appended_isotope(posts_container, filters) {
 	"use strict";
 	
 	if (posts_container.parents('.sc_scroll_horizontal').length > 0) return;
 	
-	if (!themerex_check_images_complete(posts_container) && THEMEREX_GLOBALS['isotope_init_counter']++ < 30) {
-		setTimeout(function() { themerex_init_appended_isotope(posts_container, filters); }, 200);
+	if (! _check_images_complete(posts_container) &&  _GLOBALS['isotope_init_counter']++ < 30) {
+		setTimeout(function() {  _init_appended_isotope(posts_container, filters); }, 200);
 		return;
 	}
 	// Add filters
@@ -934,7 +934,7 @@ function themerex_init_appended_isotope(posts_container, filters) {
 		}
 	}
 	// Init shortcodes in added elements
-	themerex_init_shortcodes(posts_container);
+	 _init_shortcodes(posts_container);
 	// Get added elements
 	var elems = posts_container.find('.isotope_item:not(.isotope_item_show)');
 	// Notify isotope about added elements with timeout
@@ -950,16 +950,16 @@ function themerex_init_appended_isotope(posts_container, filters) {
 // Post formats init
 //=====================================================
 
-function themerex_init_post_formats() {
+function  _init_post_formats() {
 	"use strict";
 
 	// MediaElement init
-	themerex_init_media_elements(jQuery('body'));
+	 _init_media_elements(jQuery('body'));
 	
 	// Isotope first init
 	if (jQuery('.isotope_wrap:not(.inited)').length > 0) {
-		THEMEREX_GLOBALS['isotope_init_counter'] = 0;
-		themerex_init_isotope();
+		 _GLOBALS['isotope_init_counter'] = 0;
+		 _init_isotope();
 	}
 
 	// Hover Effect 'Dir'
@@ -970,8 +970,8 @@ function themerex_init_post_formats() {
 	}
 
 	// Popup init
-	if (THEMEREX_GLOBALS['popup_engine'] == 'pretty') {
-		jQuery("a[href$='jpg'],a[href$='jpeg'],a[href$='png'],a[href$='gif']").attr('rel', 'prettyPhoto'+(THEMEREX_GLOBALS['popup_gallery'] ? '[slideshow]' : ''));
+	if ( _GLOBALS['popup_engine'] == 'pretty') {
+		jQuery("a[href$='jpg'],a[href$='jpeg'],a[href$='png'],a[href$='gif']").attr('rel', 'prettyPhoto'+( _GLOBALS['popup_gallery'] ? '[slideshow]' : ''));
 		var images = jQuery("a[rel*='prettyPhoto']:not(.inited):not([data-rel*='pretty']):not([rel*='magnific']):not([data-rel*='magnific'])").addClass('inited');
 		try {
 			images.prettyPhoto({
@@ -980,7 +980,7 @@ function themerex_init_post_formats() {
 				deeplinking: false
 			});
 		} catch (e) {};
-	} else if (THEMEREX_GLOBALS['popup_engine']=='magnific') {
+	} else if ( _GLOBALS['popup_engine']=='magnific') {
 		jQuery("a[href$='jpg'],a[href$='jpeg'],a[href$='png'],a[href$='gif']").attr('rel', 'magnific');
 		var images = jQuery("a[rel*='magnific']:not(.inited):not(.prettyphoto):not([rel*='pretty']):not([data-rel*='pretty'])").addClass('inited');
 		try {
@@ -993,12 +993,12 @@ function themerex_init_post_formats() {
 				midClick: true,
 				//removalDelay: 500, 
 				preloader: true,
-				tLoading: THEMEREX_GLOBALS['strings']['magnific_loading'],
+				tLoading:  _GLOBALS['strings']['magnific_loading'],
 				gallery:{
-					enabled: THEMEREX_GLOBALS['popup_gallery']
+					enabled:  _GLOBALS['popup_gallery']
 				},
 				image: {
-					tError: THEMEREX_GLOBALS['strings']['magnific_error'],
+					tError:  _GLOBALS['strings']['magnific_error'],
 					verticalFit: true
 				}
 			});
@@ -1019,11 +1019,11 @@ function themerex_init_post_formats() {
 				var inc = button.hasClass('enabled') ? 1 : -1;
 				var post_id = button.data('postid');
 				var likes = Number(button.data('likes'))+inc;
-				var cookie_likes = themerex_get_cookie('themerex_likes');
+				var cookie_likes =  _get_cookie(' _likes');
 				if (cookie_likes === undefined || cookie_likes===null) cookie_likes = '';
-				jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+				jQuery.post( _GLOBALS['ajax_url'], {
 					action: 'post_counter',
-					nonce: THEMEREX_GLOBALS['ajax_nonce'],
+					nonce:  _GLOBALS['ajax_nonce'],
 					post_id: post_id,
 					likes: likes
 				}).done(function(response) {
@@ -1039,9 +1039,9 @@ function themerex_init_post_formats() {
 							cookie_likes = cookie_likes.replace(','+post_id+',', ',');
 						}
 						button.data('likes', likes).attr('title', title).find('.post_counters_number').html(likes);
-						themerex_set_cookie('themerex_likes', cookie_likes, 365);
+						 _set_cookie(' _likes', cookie_likes, 365);
 					} else {
-						themerex_message_warning(THEMEREX_GLOBALS['strings']['error_like']);
+						 _message_warning( _GLOBALS['strings']['error_like']);
 					}
 				});
 				e.preventDefault();
@@ -1062,11 +1062,11 @@ function themerex_init_post_formats() {
 					var video = jQuery(this).removeClass('sc_video_play_button hover_icon_play').data('video');
 					if (video!=='') {
 						jQuery(this).empty().html(video);
-						themerex_video_dimensions();
+						 _video_dimensions();
 						var video_tag = jQuery(this).find('video');
 						var w = video_tag.width();
 						var h = video_tag.height();
-						themerex_init_media_elements(jQuery(this));
+						 _init_media_elements(jQuery(this));
 						// Restore WxH attributes, because Chrome broke it!
 						jQuery(this).find('video').css({'width':w, 'height': h}).attr({'width':w, 'height': h});
 					}
@@ -1081,8 +1081,8 @@ function themerex_init_post_formats() {
 }
 
 
-function themerex_init_media_elements(cont) {
-	if (THEMEREX_GLOBALS['media_elements_enabled'] && cont.find('audio,video').length > 0) {
+function  _init_media_elements(cont) {
+	if ( _GLOBALS['media_elements_enabled'] && cont.find('audio,video').length > 0) {
 		if (window.mejs) {
 			window.mejs.MepDefaults.enableAutosize = false;
 			window.mejs.MediaElementDefaults.enableAutosize = false;
@@ -1114,7 +1114,7 @@ function themerex_init_media_elements(cont) {
 				}
 			});
 		} else
-			setTimeout(function() { themerex_init_media_elements(cont); }, 400);
+			setTimeout(function() {  _init_media_elements(cont); }, 400);
 	}
 }
 
@@ -1127,40 +1127,40 @@ function themerex_init_media_elements(cont) {
 //==============================================
 
 // Show system message (bubble from previous page)
-function themerex_show_system_message() {
-	if (THEMEREX_GLOBALS['system_message']['message']) {
-		if (THEMEREX_GLOBALS['system_message']['status'] == 'success')
-			themerex_message_success(THEMEREX_GLOBALS['system_message']['message'], THEMEREX_GLOBALS['system_message']['header']);
-		else if (THEMEREX_GLOBALS['system_message']['status'] == 'info')
-			themerex_message_info(THEMEREX_GLOBALS['system_message']['message'], THEMEREX_GLOBALS['system_message']['header']);
-		else if (THEMEREX_GLOBALS['system_message']['status'] == 'error' || THEMEREX_GLOBALS['system_message']['status'] == 'warning')
-			themerex_message_warning(THEMEREX_GLOBALS['system_message']['message'], THEMEREX_GLOBALS['system_message']['header']);
+function  _show_system_message() {
+	if ( _GLOBALS['system_message']['message']) {
+		if ( _GLOBALS['system_message']['status'] == 'success')
+			 _message_success( _GLOBALS['system_message']['message'],  _GLOBALS['system_message']['header']);
+		else if ( _GLOBALS['system_message']['status'] == 'info')
+			 _message_info( _GLOBALS['system_message']['message'],  _GLOBALS['system_message']['header']);
+		else if ( _GLOBALS['system_message']['status'] == 'error' ||  _GLOBALS['system_message']['status'] == 'warning')
+			 _message_warning( _GLOBALS['system_message']['message'],  _GLOBALS['system_message']['header']);
 	}
 }
 
 // Toggle popups
-function themerex_toggle_popup(popup) {
+function  _toggle_popup(popup) {
 	if (popup.css('display')!='none')
-		themerex_hide_popup(popup);
+		 _hide_popup(popup);
 	else
-		themerex_show_popup(popup);
+		 _show_popup(popup);
 }
 
 // Show popups
-function themerex_show_popup(popup) {
+function  _show_popup(popup) {
 	if (popup.css('display')=='none') {
-		if (THEMEREX_GLOBALS['css_animation'])
-			popup.show().removeClass('animated fast '+THEMEREX_GLOBALS['menu_animation_out']).addClass('animated fast '+THEMEREX_GLOBALS['menu_animation_in']);
+		if ( _GLOBALS['css_animation'])
+			popup.show().removeClass('animated fast '+ _GLOBALS['menu_animation_out']).addClass('animated fast '+ _GLOBALS['menu_animation_in']);
 		else
 			popup.slideDown();
 	}
 }
 
 // Hide popups
-function themerex_hide_popup(popup) {
+function  _hide_popup(popup) {
 	if (popup.css('display')!='none') {
-		if (THEMEREX_GLOBALS['css_animation'])
-			popup.removeClass('animated fast '+THEMEREX_GLOBALS['menu_animation_in']).addClass('animated fast '+THEMEREX_GLOBALS['menu_animation_out']).delay(500).hide();
+		if ( _GLOBALS['css_animation'])
+			popup.removeClass('animated fast '+ _GLOBALS['menu_animation_in']).addClass('animated fast '+ _GLOBALS['menu_animation_out']).delay(500).hide();
 		else
 			popup.fadeOut();
 	}
@@ -1174,11 +1174,11 @@ function themerex_hide_popup(popup) {
 
 
 // Comments form
-function themerex_comments_validate(form) {
+function  _comments_validate(form) {
 	"use strict";
 	form.find('input').removeClass('error_fields_class');
-	var error = themerex_form_validate(form, {
-		error_message_text: THEMEREX_GLOBALS['strings']['error_global'],	// Global error message text (if don't write in checked field)
+	var error =  _form_validate(form, {
+		error_message_text:  _GLOBALS['strings']['error_global'],	// Global error message text (if don't write in checked field)
 		error_message_show: true,									// Display or not error message
 		error_message_time: 4000,									// Error message display time
 		error_message_class: 'sc_infobox sc_infobox_style_error',	// Class appended to error message block
@@ -1187,19 +1187,19 @@ function themerex_comments_validate(form) {
 		rules: [
 			{
 				field: 'author',
-				min_length: { value: 1, message: THEMEREX_GLOBALS['strings']['name_empty']},
-				max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['name_long']}
+				min_length: { value: 1, message:  _GLOBALS['strings']['name_empty']},
+				max_length: { value: 60, message:  _GLOBALS['strings']['name_long']}
 			},
 			{
 				field: 'email',
-				min_length: { value: 7, message: THEMEREX_GLOBALS['strings']['email_empty']},
-				max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['email_long']},
-				mask: { value: THEMEREX_GLOBALS['email_mask'], message: THEMEREX_GLOBALS['strings']['email_not_valid']}
+				min_length: { value: 7, message:  _GLOBALS['strings']['email_empty']},
+				max_length: { value: 60, message:  _GLOBALS['strings']['email_long']},
+				mask: { value:  _GLOBALS['email_mask'], message:  _GLOBALS['strings']['email_not_valid']}
 			},
 			{
 				field: 'comment',
-				min_length: { value: 1, message: THEMEREX_GLOBALS['strings']['text_empty'] },
-				max_length: { value: THEMEREX_GLOBALS['comments_maxlength'], message: THEMEREX_GLOBALS['strings']['text_long']}
+				min_length: { value: 1, message:  _GLOBALS['strings']['text_empty'] },
+				max_length: { value:  _GLOBALS['comments_maxlength'], message:  _GLOBALS['strings']['text_long']}
 			}
 		]
 	});
@@ -1208,10 +1208,10 @@ function themerex_comments_validate(form) {
 
 
 // Login form
-function themerex_login_validate(form) {
+function  _login_validate(form) {
 	"use strict";
 	form.find('input').removeClass('error_fields_class');
-	var error = themerex_form_validate(form, {
+	var error =  _form_validate(form, {
 		error_message_show: true,
 		error_message_time: 4000,
 		error_message_class: 'sc_infobox sc_infobox_style_error',
@@ -1220,20 +1220,20 @@ function themerex_login_validate(form) {
 		rules: [
 			{
 				field: "log",
-				min_length: { value: 1, message: THEMEREX_GLOBALS['strings']['login_empty'] },
-				max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['login_long'] }
+				min_length: { value: 1, message:  _GLOBALS['strings']['login_empty'] },
+				max_length: { value: 60, message:  _GLOBALS['strings']['login_long'] }
 			},
 			{
 				field: "pwd",
-				min_length: { value: 4, message: THEMEREX_GLOBALS['strings']['password_empty'] },
-				max_length: { value: 30, message: THEMEREX_GLOBALS['strings']['password_long'] }
+				min_length: { value: 4, message:  _GLOBALS['strings']['password_empty'] },
+				max_length: { value: 30, message:  _GLOBALS['strings']['password_long'] }
 			}
 		]
 	});
 	if (!error) {
-		jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+		jQuery.post( _GLOBALS['ajax_url'], {
 			action: 'login_user',
-			nonce: THEMEREX_GLOBALS['ajax_nonce'],
+			nonce:  _GLOBALS['ajax_nonce'],
 			remember: form.find('#rememberme').val(),
 			user_log: form.find('#log').val(),
 			user_pwd: form.find('#password').val()
@@ -1244,12 +1244,12 @@ function themerex_login_validate(form) {
 			if (result_box.length==0) result_box = form.after('<div class="result"></div>').next('.result');
 			result_box.toggleClass('sc_infobox_style_error', false).toggleClass('sc_infobox_style_success', false);
 			if (rez.error === '') {
-				result_box.addClass('sc_infobox sc_infobox_style_success').html(THEMEREX_GLOBALS['strings']['login_success']);
+				result_box.addClass('sc_infobox sc_infobox_style_success').html( _GLOBALS['strings']['login_success']);
 				setTimeout(function() { 
 					location.reload(); 
 					}, 3000);
 			} else {
-				result_box.addClass('sc_infobox sc_infobox_style_error').html(THEMEREX_GLOBALS['strings']['login_failed'] + '<br>' + rez.error);
+				result_box.addClass('sc_infobox sc_infobox_style_error').html( _GLOBALS['strings']['login_failed'] + '<br>' + rez.error);
 			}
 			result_box.fadeIn().delay(3000).fadeOut();
 		});
@@ -1259,10 +1259,10 @@ function themerex_login_validate(form) {
 
 
 // Registration form 
-function themerex_registration_validate(form) {
+function  _registration_validate(form) {
 	"use strict";
 	form.find('input').removeClass('error_fields_class');
-	var error = themerex_form_validate(form, {
+	var error =  _form_validate(form, {
 		error_message_show: true,
 		error_message_time: 4000,
 		error_message_class: "sc_infobox sc_infobox_style_error",
@@ -1271,30 +1271,30 @@ function themerex_registration_validate(form) {
 		rules: [
 			{
 				field: "registration_username",
-				min_length: { value: 1, message: THEMEREX_GLOBALS['strings']['login_empty'] },
-				max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['login_long'] }
+				min_length: { value: 1, message:  _GLOBALS['strings']['login_empty'] },
+				max_length: { value: 60, message:  _GLOBALS['strings']['login_long'] }
 			},
 			{
 				field: "registration_email",
-				min_length: { value: 7, message: THEMEREX_GLOBALS['strings']['email_empty'] },
-				max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['email_long'] },
-				mask: { value: THEMEREX_GLOBALS['email_mask'], message: THEMEREX_GLOBALS['strings']['email_not_valid'] }
+				min_length: { value: 7, message:  _GLOBALS['strings']['email_empty'] },
+				max_length: { value: 60, message:  _GLOBALS['strings']['email_long'] },
+				mask: { value:  _GLOBALS['email_mask'], message:  _GLOBALS['strings']['email_not_valid'] }
 			},
 			{
 				field: "registration_pwd",
-				min_length: { value: 4, message: THEMEREX_GLOBALS['strings']['password_empty'] },
-				max_length: { value: 30, message: THEMEREX_GLOBALS['strings']['password_long'] }
+				min_length: { value: 4, message:  _GLOBALS['strings']['password_empty'] },
+				max_length: { value: 30, message:  _GLOBALS['strings']['password_long'] }
 			},
 			{
 				field: "registration_pwd2",
-				equal_to: { value: 'registration_pwd', message: THEMEREX_GLOBALS['strings']['password_not_equal'] }
+				equal_to: { value: 'registration_pwd', message:  _GLOBALS['strings']['password_not_equal'] }
 			}
 		]
 	});
 	if (!error) {
-		jQuery.post(THEMEREX_GLOBALS['ajax_url'], {
+		jQuery.post( _GLOBALS['ajax_url'], {
 			action: 'registration_user',
-			nonce: THEMEREX_GLOBALS['ajax_nonce'],
+			nonce:  _GLOBALS['ajax_nonce'],
 			user_name: 	form.find('#registration_username').val(),
 			user_email: form.find('#registration_email').val(),
 			user_pwd: 	form.find('#registration_pwd').val(),
@@ -1305,12 +1305,12 @@ function themerex_registration_validate(form) {
 			if (result_box.length==0) result_box = form.after('<div class="result"></div>').next('.result');
 			result_box.toggleClass('sc_infobox_style_error', false).toggleClass('sc_infobox_style_success', false);
 			if (rez.error === '') {
-				result_box.addClass('sc_infobox sc_infobox_style_success').html(THEMEREX_GLOBALS['strings']['registration_success']);
+				result_box.addClass('sc_infobox sc_infobox_style_success').html( _GLOBALS['strings']['registration_success']);
 				setTimeout(function() { 
 					jQuery('.popup_login_link').trigger('click'); 
 					}, 3000);
 			} else {
-				result_box.addClass('sc_infobox sc_infobox_style_error').html(THEMEREX_GLOBALS['strings']['registration_failed'] + ' ' + rez.error);
+				result_box.addClass('sc_infobox sc_infobox_style_error').html( _GLOBALS['strings']['registration_failed'] + ' ' + rez.error);
 			}
 			result_box.fadeIn().delay(3000).fadeOut();
 		});
@@ -1320,7 +1320,7 @@ function themerex_registration_validate(form) {
 
 
 // Contact form handlers
-function themerex_contact_form_validate(form){
+function  _contact_form_validate(form){
 	"use strict";
 	//var url = form.attr('action');
 	var url = "include/sendmail.php";
@@ -1329,7 +1329,7 @@ function themerex_contact_form_validate(form){
 	var error = false;
 	var form_custom = form.data('formtype')=='custom';
 	if (!form_custom) {
-		error = themerex_form_validate(form, {
+		error =  _form_validate(form, {
 			error_message_show: true,
 			error_message_time: 4000,
 			error_message_class: "sc_infobox sc_infobox_style_error",
@@ -1338,24 +1338,24 @@ function themerex_contact_form_validate(form){
 			rules: [
 				{
 					field: "username",
-					min_length: { value: 1,	 message: THEMEREX_GLOBALS['strings']['name_empty'] },
-					max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['name_long'] }
+					min_length: { value: 1,	 message:  _GLOBALS['strings']['name_empty'] },
+					max_length: { value: 60, message:  _GLOBALS['strings']['name_long'] }
 				},
 				{
 					field: "email",
-					min_length: { value: 7,	 message: THEMEREX_GLOBALS['strings']['email_empty'] },
-					max_length: { value: 60, message: THEMEREX_GLOBALS['strings']['email_long'] },
-					mask: { value: THEMEREX_GLOBALS['email_mask'], message: THEMEREX_GLOBALS['strings']['email_not_valid'] }
+					min_length: { value: 7,	 message:  _GLOBALS['strings']['email_empty'] },
+					max_length: { value: 60, message:  _GLOBALS['strings']['email_long'] },
+					mask: { value:  _GLOBALS['email_mask'], message:  _GLOBALS['strings']['email_not_valid'] }
 				},
 				{
 					field: "subject",
-					min_length: { value: 1,	 message: THEMEREX_GLOBALS['strings']['subject_empty'] },
-					max_length: { value: 100, message: THEMEREX_GLOBALS['strings']['subject_long'] }
+					min_length: { value: 1,	 message:  _GLOBALS['strings']['subject_empty'] },
+					max_length: { value: 100, message:  _GLOBALS['strings']['subject_long'] }
 				},
 				{
 					field: "message",
-					min_length: { value: 1,  message: THEMEREX_GLOBALS['strings']['text_empty'] },
-					max_length: { value: THEMEREX_GLOBALS['contacts_maxlength'], message: THEMEREX_GLOBALS['strings']['text_long'] }
+					min_length: { value: 1,  message:  _GLOBALS['strings']['text_empty'] },
+					max_length: { value:  _GLOBALS['contacts_maxlength'], message:  _GLOBALS['strings']['text_long'] }
 				}
 			]
 		});
@@ -1363,7 +1363,7 @@ function themerex_contact_form_validate(form){
 	if (!error && url!='#') {
 		jQuery.post(url, {
 			action: "send_contact_form",
-			nonce: THEMEREX_GLOBALS['ajax_nonce'],
+			nonce:  _GLOBALS['ajax_nonce'],
 			type: form_custom ? 'custom' : 'contact',
 			data: form.serialize()
 		}).done(function(response) {
@@ -1373,9 +1373,9 @@ function themerex_contact_form_validate(form){
 			var result = form.find(".result").toggleClass("sc_infobox_style_error", false).toggleClass("sc_infobox_style_success", false);
 			if (rez.error === '') {
 				form.get(0).reset();
-				result.addClass("sc_infobox_style_success").html(THEMEREX_GLOBALS['strings']['send_complete']);
+				result.addClass("sc_infobox_style_success").html( _GLOBALS['strings']['send_complete']);
 			} else {
-				result.addClass("sc_infobox_style_error").html(THEMEREX_GLOBALS['strings']['send_error'] + ' ' + rez.error);
+				result.addClass("sc_infobox_style_error").html( _GLOBALS['strings']['send_error'] + ' ' + rez.error);
 			}
 			result.fadeIn().delay(3000).fadeOut();
 		});
