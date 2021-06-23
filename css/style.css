@@ -3833,3 +3833,9 @@ iframe[name="google_conversion_frame"] { height:1px; min-height:0px; display:non
 	   -moz-border-radius: 15px;
 			border-radius: 15px;
 }
+
+
+.logo_pos{
+	position: relative; 
+	bottom: 22px;
+}

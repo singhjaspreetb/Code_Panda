@@ -813,7 +813,10 @@ Samsung Galaxy
 Very common low res
 */
 @media (max-width: 479px) {
-
+	.logo_pos{
+		position: relative; 
+		bottom: 15px;
+	}
 	/* Body sizes */
 	.body_style_boxed .page_wrap {		width:300px; }
 	.slider_boxed, .content_wrap, .content_container {	width:280px; }
