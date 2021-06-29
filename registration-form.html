@@ -40,6 +40,30 @@
 	<link rel="stylesheet" href="css/custom-style.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/skins/skin-responsive.css" type="text/css" media="all" />
+	<style>
+		table,tr,td{
+			border: none !important; 
+			border-collapse: collapse; 
+		}
+		input{
+			width: 300px;
+		}
+		select{
+			width: 150px;
+			height: 40px;
+			border-radius: 5px;
+			text-align: center;
+		}
+		select option{
+			padding: 50px;
+			text-align: center;
+			height: 40px;
+		}
+		.colo{
+			color: black !important;
+			font-weight: bolder;
+		}
+	</style>
 </head>
 
 <body
@@ -111,76 +135,20 @@
 									<ul class="sub-menu">
 										<li class="menu-item"><a href="#">Software Testing Course </a></li>
 										<li class="menu-item"><a href="#">INDUSTRIAL TRAINING </a></li>
-										<li class="menu-item"><a href="#">Manual Testing , Automation Testing</a></li>
 
-										<!-- <li class="menu-item"><a href="typography.html">Typography</a></li>
-										<li class="menu-item"><a href="shortcodes.html">Shortcodes</a></li>
-										<li class="menu-item"><a href="video-tutorials.html">Video Tutorials</a></li>
-										<li class="menu-item"><a href="events.html">Events Calendar</a></li>
-										<li class="menu-item"><a href="about-us.html">About Us</a></li>
-										<li class="menu-item"><a href="contact-us.html">Contact Us</a></li>
-										<li class="menu-item"><a href="not-existing-page.html">Page 404</a></li>
-										<li class="menu-item"><a href="not-existing-page-2.html">Page 404 (Style 2)</a></li> -->
+
 									</ul>
 								</li>
-								<!-- <li class="menu-item menu-item-has-children"><a href="courses-streampage.html">Courses</a>
-									<ul class="sub-menu">
-										<li class="menu-item"><a href="courses-streampage.html">All courses</a></li>
-										<li class="menu-item"><a href="free-course.html">Free course</a></li>
-										<li class="menu-item"><a href="paid-course.html">Paid course</a></li>
-										<li class="menu-item menu-item-has-children"><a href="#">Lessons</a>
-											<ul class="sub-menu">
-												<li class="menu-item"><a href="free-lesson.html">Free lesson (started)</a></li>
-												<li class="menu-item"><a href="free-lesson-coming-soon.html">Free lesson (coming soon)</a></li>
-												<li class="menu-item"><a href="lesson-from-paid-course.html">Lesson from paid course</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li> -->
+
 								<li class="menu-item menu-item-has-children"><a href="#">OUR WORK</a>
 									<ul class="sub-menu">
 										<li class="menu-item"><a href="#">PLACEMENT</a></li>
 										<li class="menu-item"><a href="#">STUDENT REVIEWS </a></li>
 									</ul>
 								</li>
-								<li class="menu-item menu-item-has-children"><a href="team-members.html">Teachers</a>
-									<ul class="sub-menu">
-										<li class="menu-item"><a href="team-members.html">Teachers Team</a></li>
-										<li class="menu-item"><a href="personal-page.html">Teacher&#8217;s Personal
-												Page</a></li>
-									</ul>
-								</li>
+
 								<li class="menu-item menu-item-has-children"><a href="blog-streampage.html">Blog</a>
-									<!-- <ul class="sub-menu">
-										<li class="menu-item menu-item-has-children"><a href="#">Post Formats</a>
-											<ul class="sub-menu">
-												<li class="menu-item"><a href="post-formats-with-sidebar.html">With Sidebar</a></li>
-												<li class="menu-item"><a href="post-formats.html">Without sidebar</a></li>
-											</ul>
-										</li>
-										<li class="menu-item menu-item-has-children"><a href="#">Masonry tiles</a>
-											<ul class="sub-menu">
-												<li class="menu-item"><a href="masonry-2-columns.html">Masonry (2 columns)</a></li>
-												<li class="menu-item"><a href="masonry-3-columns.html">Masonry (3 columns)</a></li>
-											</ul>
-										</li>
-										<li class="menu-item menu-item-has-children"><a href="#">Portfolio tiles</a>
-											<ul class="sub-menu">
-												<li class="menu-item"><a href="portfolio-2-columns.html">Portfolio (2 columns)</a></li>
-												<li class="menu-item"><a href="portfolio-3-columns.html">Portfolio (3 columns)</a></li>
-												<li class="menu-item menu-item-has-children"><a href="#">Portfolio hovers</a>
-													<ul class="sub-menu">
-														<li class="menu-item"><a href="portfolio-hovers-circle.html">Circle, Part 1</a></li>
-														<li class="menu-item"><a href="portfolio-hovers-circle-part-2.html">Circle, Part 2</a></li>
-														<li class="menu-item"><a href="portfolio-hovers-circle-part-3.html">Circle, Part 3</a></li>
-														<li class="menu-item"><a href="portfolio-hovers-square.html">Square, Part 1</a></li>
-														<li class="menu-item"><a href="portfolio-hovers-square-part-2.html">Square, Part 2</a></li>
-														<li class="menu-item"><a href="portfolio-hovers-square-part-3.html">Square, Part 3</a></li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-									</ul> -->
+
 								</li>
 								<li class="menu-item"><a href="contact-us.html">Contact Us</a></li>
 							</ul>
@@ -210,37 +178,71 @@
 
 							<!-- /Features section -->
 							<!-- Contact form -->
-							<div class="sc_section bg_tint_dark sc_contact_bg_img">
-								<div class="sc_section_overlay sc_contact_bg_color" data-overlay="0.8"
+							<div class="sc_section bg_tint_dark sc_contact_bg_img" style="background-image: url('images/bg/pattern_2.jpg');">
+								<div class="sc_section_overlay sc_contact_bg_colo" data-overlay="0.8"
 									data-bg_color="#024b5e">
 									<div class="sc_section_content">
 										<div class="sc_content content_wrap margin_top_3em_imp margin_bottom_3_5em_imp">
 											<div id="sc_contact_form"
 												class="sc_contact_form sc_contact_form_standard aligncenter width_80per">
-												<h2 class="sc_contact_form_title">Register Now</h2>
-												<p class="sc_contact_form_description">Your email address will not be
+												<h2 class="sc_contact_form_title colo">Register Now</h2>
+												<p class="sc_contact_form_description colo">Your email address will not be
 													published. Required fields are marked *</p>
-												<form id="sc_contact_form_1" data-formtype="contact" method="post"
-													action="#">
-													<div class="sc_contact_form_item sc_contact_form_field label_over">
-														<label class="required" for="sc_contact_form_username">Name</label>
-														<input id="sc_contact_form_username" type="text" name="username" placeholder="Name *">
-													</div>
-													<div class="sc_contact_form_item sc_contact_form_field label_over">
-														<label class="required" for="sc_contact_form_username">Name</label>
-														<input id="sc_contact_form_username" type="text" name="username" placeholder="Name *">
-													</div>
-													<div class="sc_contact_form_item sc_contact_form_field label_over">
-														<label class="required" for="sc_contact_form_username">Name</label>
-														<input id="sc_contact_form_username" type="text" name="username" placeholder="Name *">
-													</div>
-													<div class="sc_contact_form_item sc_contact_form_field label_over">
-														<label class="required" for="sc_contact_form_username">Name</label>
-														<input id="sc_contact_form_username" type="text" name="username" placeholder="Name *">
-													</div>
-													<div class="sc_contact_form_item sc_contact_form_button">
-														<button>SEND MESSAGE</button>
-													</div>
+												<form id="sc_contact_form_" data-formtype="contact" method="post"
+													action="#" style="display: flex; justify-content: center;">
+													<table cellspacing="0" cellpadding="0">
+														<tr>
+															<td>
+																<div class="sc_contact_form_item label_over">
+																	<label class="required" for="sc_contact_form_username">Name</label>
+																	<input id="sc_contact_form_username" type="text" name="username" placeholder="Name *">
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="sc_contact_form_item label_over">
+																	<label class="required" for="sc_contact_form_number">Phone Number</label>
+																	<input id="sc_contact_form_number" type="text" name="number" placeholder="Phone Number *">
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="sc_contact_form_item label_over">
+																	<label class="required" for="sc_contact_form_email">Email Address</label>
+																	<input id="sc_contact_form_email" type="text" name="email" placeholder="Email Address *">
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="sc_contact_form_item label_over">
+																	<label class="required" for="sc_contact_form_course">Course Name</label>
+																	<input id="sc_contact_form_course" type="text" name="course" placeholder="Course Name *">
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="sc_contact_form_item label_over">
+																	<label class="required" for="sc_contact_form_mode">-- Mode --</label>
+																	<select name="mode" id="c_contact_form_mode">
+																		<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Mode --</option>
+																		<option value="Classroom">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClassRoom</option>
+																		<option value="Online">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Online</option>
+																	</select>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="sc_contact_form_item sc_contact_form_button">
+																	<button>Submit Form</button>
+																</div>
+															</td>
+														</tr>
+													</table>
 													<div class="result sc_infobox"></div>
 												</form>
 											</div>
